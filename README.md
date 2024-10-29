@@ -2,7 +2,7 @@
  <img src="https://hermes.dio.me/articles/cover/9449651b-e61d-4e4a-8460-4a5063e77afb.jpg" height="250" width="350">  
  <img src="https://www.infoworld.com/wp-content/uploads/2024/06/shutterstock_1361674454-100939444-orig.jpg?resize=1536%2C1025&quality=50&strip=all" height="250" width="350 </p>
   <h1 align="center"></h1>
- <h1 align="center">Tricky Trails obby</h1>
+ <h1 align="center"> My 600lb escape</h1>
 <p align="center">
 </p>
 Roblox Obby game.
@@ -61,7 +61,7 @@ The player needs to jump between the white blocks.
 </p>
 
 <p align="center">
- <img src="https://github.com/JenniferFariasRodrigues/tricky-trails-obby/blob/feature/gameplay-engine/images/blue_phase.jpeg" height="190" width="800"> 
+ <img src="" height="190" width="800"> 
 </p>
 
 
@@ -108,7 +108,7 @@ The blocks are rotating. The player needs to jump over the rotating blocks to pa
 </p>
 
 <p align="center">
- <img src="https://github.com/JenniferFariasRodrigues/tricky-trails-obby/blob/feature/gameplay-engine/images/red_phase_oficial.jpeg" height="190" width="800"> 
+ <img src="" height="190" width="800"> 
 </p>
 
 
