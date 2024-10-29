@@ -7,14 +7,16 @@
 </p>
 Roblox Obby game.
 
+### Description
 
-### Description 
 ---
+
 The idea is to create a simple healthy life style game.
 
 ---
 
 ### Starting
+
 ```bash
 # Clone this project
 $ git clone https://github.com/JenniferFariasRodrigues/my-600lb-escape.git
@@ -29,22 +31,23 @@ Click on "Run" in the Window.
 ```
 
 ---
+
 ### Output
 
-Link Roblox:
+Link :
+
 ```
-https://www.roblox.com/games/18671654592/Trick-trails-obby-oficial#!
+
 ```
 
+The expected project frontend output is:
 
-
- The expected project frontend output is:
 <p align="center">
  <img src="" height="250" width="550"> 
 </p>
 
 The game is distributed on six phases as:
- 
+
 <p>
 1. White phase
 </p>
@@ -55,7 +58,6 @@ The game is distributed on six phases as:
 
 The player needs to jump between the white blocks.
 
-
 <p>
 2. Blue phase
 </p>
@@ -64,9 +66,7 @@ The player needs to jump between the white blocks.
  <img src="" height="190" width="800"> 
 </p>
 
-
 The player needs to jump up between the blocks and not touch the red block. After three touches on red cylinder, the player died.
-
 
 <p>
 3. Green phase
@@ -76,9 +76,7 @@ The player needs to jump up between the blocks and not touch the red block. Afte
  <img src="" height="190" width="800"> 
 </p>
 
-
 The player needs to jump up between the blocks and not touch the red block. The player died after touch any red block.
-
 
 <p>
 4. Yellow phase
@@ -88,9 +86,7 @@ The player needs to jump up between the blocks and not touch the red block. The 
  <img src="" height="190" width="800"> 
 </p>
 
-
 The player needs to jump up between the blocks and not touch the red block. The player died after touch any red block.
-
 
 <p>
 5. Orange phase
@@ -99,7 +95,6 @@ The player needs to jump up between the blocks and not touch the red block. The 
 <p align="center">
  <img src="" height="190" width="800"> 
 </p>
-
 
 The blocks are rotating. The player needs to jump over the rotating blocks to pass the level.
 
@@ -110,7 +105,3 @@ The blocks are rotating. The player needs to jump over the rotating blocks to pa
 <p align="center">
  <img src="" height="190" width="800"> 
 </p>
-
-
-The blocks are rotating. A red stripe is on each block. The player needs to jump over the rotating blocks and not touch the rotating cylinders to pass the level. If the player touches a cylinder, the player will die.
-
