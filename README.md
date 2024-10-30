@@ -4,18 +4,23 @@
   <h1 align="center"></h1>
  <h1 align="center"> My 600lb escape</h1>
 <p align="center">
-</p>
-Roblox Obby game.
+<p align="center">A game about navigating obstacles to achieve a healthy lifestyle, developed with Lua and Solar2D.</p>
 
 ### Description
 
 ---
 
-The idea is to create a simple healthy life style game.
+"My 600lb Escape" is a lifestyle game where players make choices that affect the character's health and weight. By navigating through obstacles representing lifestyle choices like healthy and unhealthy foods, players gain or lose weight based on their in-game decisions.
 
 ---
 
-### Starting
+## Technologies Used
+
+- **Lua**: Main programming language for game logic.
+- **Solar2D (Corona SDK)**: Platform for developing and rendering the game.
+- **JavaScript**: For managing game description and interaction in the user interface.
+
+### Getting Started
 
 ```bash
 # Clone this project
@@ -32,76 +37,64 @@ Click on "Run" in the Window.
 
 ---
 
-### Output
+## Run the Project
 
-Link :
+1. In Solar2D, select the project and click **Run** to start the game.
 
-```
+## Game Flow
 
-```
+The game consists of phases where players must avoid high-calorie obstacles and aim for those that promote weight loss.
 
-The expected project frontend output is:
+### Game Phases
+
+#### Initial Phase
+
+- **Objective**: Learn the basic game controls.
+- **Description**: Players must avoid high-calorie obstacles and interact with healthy ones to gain points and lose weight.
+- **Image Preview**:
+
+  <p align="center">
+     <img src="" height="190" width="800"> 
+  </p>
+
+#### Healthy Choices Phase
+
+- **Objective**: Select low-calorie options while avoiding high-calorie foods to progress.
+- **Description**: Navigate through various foods with different calorie values to maintain or reduce weight.
+- **Image Preview**:
+
+  <p align="center">
+     <img src="" height="190" width="800"> 
+  </p>
+
+#### Challenge Phase
+
+- **Objective**: Avoid as many unhealthy obstacles as possible to maximize points.
+- **Description**: With increased difficulty, this phase introduces a variety of moving obstacles to dodge.
+- **Image Preview**:
+
+  <p align="center">
+     <img src="" height="190" width="800"> 
+  </p>
+
+## Project Output
+
+### Link to Download Game
+
+**Play now**: [Game Link](https://github.com/JenniferFariasRodrigues/my-600lb-escape)
+
+### Expected Output:
+
+The game interface provides interactive levels as described above.
 
 <p align="center">
  <img src="" height="250" width="550"> 
 </p>
 
-The game is distributed on six phases as:
+## Contribution
 
-<p>
-1. White phase
-</p>
+Feel free to contribute to this project by submitting pull requests. Please ensure your changes are well-tested and documented.
 
-<p align="center">
- <img src="" height="190" width="800"> 
-</p>
+## License
 
-The player needs to jump between the white blocks.
-
-<p>
-2. Blue phase
-</p>
-
-<p align="center">
- <img src="" height="190" width="800"> 
-</p>
-
-The player needs to jump up between the blocks and not touch the red block. After three touches on red cylinder, the player died.
-
-<p>
-3. Green phase
-</p>
-
-<p align="center">
- <img src="" height="190" width="800"> 
-</p>
-
-The player needs to jump up between the blocks and not touch the red block. The player died after touch any red block.
-
-<p>
-4. Yellow phase
-</p>
-
-<p align="center">
- <img src="" height="190" width="800"> 
-</p>
-
-The player needs to jump up between the blocks and not touch the red block. The player died after touch any red block.
-
-<p>
-5. Orange phase
-</p>
-
-<p align="center">
- <img src="" height="190" width="800"> 
-</p>
-
-The blocks are rotating. The player needs to jump over the rotating blocks to pass the level.
-
- <p>
-6. Red phase
-</p>
-
-<p align="center">
- <img src="" height="190" width="800"> 
-</p>
+This project is licensed under the MIT License - see the LICENSE file for details.
