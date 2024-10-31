@@ -90,7 +90,7 @@ The game consists of phases where players must avoid high-calorie obstacles and 
 The game interface provides interactive levels as described above.
 
 <p align="center">
- <img src="" height="250" width="550"> 
+ <img src="https://github.com/JenniferFariasRodrigues/my-600lb-escape/blob/main/pics/img_1.png?raw=true" height="250" width="550"> 
 </p>
 
 ## Contribution
