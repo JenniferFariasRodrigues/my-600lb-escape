@@ -130,6 +130,86 @@ function startGame()
     weightText:setFillColor(0, 0, 0)
 
     -- Função para exibir "Game Over" e parar o jogo
+    -- local function gameOver()
+    --     -- Pausa a física do jogo
+    --     physics.pause()
+
+    --     -- Remove event listeners com verificação
+    --     pcall(function() Runtime:removeEventListener("enterFrame", updatePosition) end)
+    --     pcall(function() Runtime:removeEventListener("touch", onScreenTouch) end)
+    --     pcall(function() character:removeEventListener("collision", onCollision) end)
+
+    --     -- Remover elementos da tela
+    --     display.remove(character)
+    --     for i = 1, #upperObstacles do
+    --         display.remove(upperObstacles[i])
+    --     end
+    --     for i = 1, #lowerObstacles do
+    --         display.remove(lowerObstacles[i])
+    --     end
+    --     display.remove(background)
+    --     display.remove(weightBar)
+    --     display.remove(weightText)
+
+    --     -- Exibir a imagem de "Game Over"
+    --     local gameOverImage = display.newImageRect("gameOver/gameOver.png", display.contentWidth, display.contentHeight)
+    --     gameOverImage.x = display.contentCenterX
+    --     gameOverImage.y = display.contentCenterY
+
+    --     -- Mostrar mensagem e botões sobre a imagem de "Game Over"
+    --     local tryAgainText = display.newText({
+    --         text = "Try again?",
+    --         x = display.contentCenterX,
+    --         y = display.contentCenterY - 50,
+    --         font = native.systemFontBold,
+    --         fontSize = 36
+    --     })
+    --     tryAgainText:setFillColor(1, 1, 1)
+
+    --     -- Botão "Yes"
+    --     local yesButton = display.newRect(display.contentCenterX - 60, display.contentCenterY + 50, 100, 50)
+    --     yesButton:setFillColor(0.2, 0.8, 0.2)
+    --     local yesText = display.newText({
+    --         text = "Yes",
+    --         x = yesButton.x,
+    --         y = yesButton.y,
+    --         font = native.systemFontBold,
+    --         fontSize = 24
+    --     })
+
+    --     -- Botão "No"
+    --     local noButton = display.newRect(display.contentCenterX + 60, display.contentCenterY + 50, 100, 50)
+    --     noButton:setFillColor(0.8, 0.2, 0.2)
+    --     local noText = display.newText({
+    --         text = "No",
+    --         x = noButton.x,
+    --         y = noButton.y,
+    --         font = native.systemFontBold,
+    --         fontSize = 24
+    --     })
+
+    --     -- Ação para o botão "Yes"
+    --     local function onYesButtonTap()
+    --         display.remove(tryAgainText)
+    --         display.remove(yesButton)
+    --         display.remove(yesText)
+    --         display.remove(noButton)
+    --         display.remove(noText)
+    --         display.remove(gameOverImage)
+    --         -- Reinicia o jogo
+    --         physics.start()
+    --         createStartScreen() -- Recria a tela de início
+    --     end
+    --     yesButton:addEventListener("tap", onYesButtonTap)
+
+    --     -- Ação para o botão "No"
+    --     local function onNoButtonTap()
+    --         native.requestExit() -- Fecha o aplicativo
+    --     end
+    --     noButton:addEventListener("tap", onNoButtonTap)
+    -- end
+
+    -- Função para exibir "Game Over" e parar o jogo
     local function gameOver()
         -- Pausa a física do jogo
         physics.pause()
@@ -156,18 +236,18 @@ function startGame()
         gameOverImage.x = display.contentCenterX
         gameOverImage.y = display.contentCenterY
 
-        -- Mostrar mensagem e botões sobre a imagem de "Game Over"
+        -- Mostrar mensagem e botões um pouco acima do fundo da tela
         local tryAgainText = display.newText({
             text = "Try again?",
             x = display.contentCenterX,
-            y = display.contentCenterY - 50,
+            y = display.contentHeight - 300, -- Posição ajustada um pouco mais acima do fundo
             font = native.systemFontBold,
             fontSize = 36
         })
         tryAgainText:setFillColor(1, 1, 1)
 
         -- Botão "Yes"
-        local yesButton = display.newRect(display.contentCenterX - 60, display.contentCenterY + 50, 100, 50)
+        local yesButton = display.newRect(display.contentCenterX - 60, display.contentHeight - 230, 100, 50) -- Posição ajustada abaixo da mensagem
         yesButton:setFillColor(0.2, 0.8, 0.2)
         local yesText = display.newText({
             text = "Yes",
@@ -178,7 +258,8 @@ function startGame()
         })
 
         -- Botão "No"
-        local noButton = display.newRect(display.contentCenterX + 60, display.contentCenterY + 50, 100, 50)
+
+        local noButton = display.newRect(display.contentCenterX + 60, display.contentHeight - 230, 100, 50) -- Posição ajustada abaixo da mensagem
         noButton:setFillColor(0.8, 0.2, 0.2)
         local noText = display.newText({
             text = "No",
@@ -204,7 +285,8 @@ function startGame()
 
         -- Ação para o botão "No"
         local function onNoButtonTap()
-            native.requestExit() -- Fecha o aplicativo
+            -- Simula uma saída "suave" no iOS
+            print("Game ended by user.")
         end
         noButton:addEventListener("tap", onNoButtonTap)
     end
