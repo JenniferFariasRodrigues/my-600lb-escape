@@ -6,6 +6,17 @@ local physics = require("physics")
 physics.start()
 physics.setGravity(0, 9.8)
 
+-- Load audio library
+local audio = require("audio")
+
+-- Load the background music
+local startMusic = audio.loadStream("audio/start_music.mp3")
+
+-- Function to play music at the start screen
+local function playStartMusic()
+    audio.play(startMusic, { loops = -1 })
+end
+
 -- Screen boundaries
 local screenLeft = display.screenOriginX
 local screenRight = display.contentWidth - display.screenOriginX
@@ -23,10 +34,13 @@ local startScreenGroup
 local function createStartScreen()
     startScreenGroup = display.newGroup()
 
+    -- Play the background music when the start screen is created
+    playStartMusic()
+
     local titleText = display.newText({
         text = "My 600-lb Escape",
         x = display.contentCenterX,
-        y = display.contentCenterY - 100,
+        y = display.contentCenterY - 300, -- Ajuste para subir o título
         font = native.systemFontBold,
         fontSize = 40
     })
@@ -35,10 +49,10 @@ local function createStartScreen()
 
     local rulesText = display.newText({
         text =
-        "Regras:\n- Pule os obstáculos ricos em carboidratos.\n- Colida com alimentos saudáveis para perder peso.\n- Evite ganhar peso acima de 300kg.\n- Evite perder peso abaixo de 45kg.",
+        "Regras:\n- Pule os obstáculos ricos em carboidratos.\n- Colida com alimentos saudáveis para perder peso.\n- Evite ganhar peso acima de 300kg.\n- Evite perder peso abaixo de 45kg.\n- O personagem fica mais lento ao pular conforme ganha peso e mais rápido conforme perde peso.",
         x = display.contentCenterX,
-        y = display.contentCenterY,
-        width = display.contentWidth - 40,
+        y = display.contentCenterY - 150, -- Ajuste conforme necessário
+        width = display.contentWidth - 140,
         font = native.systemFont,
         fontSize = 20,
         align = "center"
@@ -46,7 +60,8 @@ local function createStartScreen()
     rulesText:setFillColor(0, 0, 0)
     startScreenGroup:insert(rulesText)
 
-    local startButton = display.newRect(display.contentCenterX, display.contentCenterY + 150, 150, 50)
+    -- Criação do botão de início com aumento de tamanho
+    local startButton = display.newRect(display.contentCenterX, display.contentCenterY, 200, 60)
     startButton:setFillColor(0.1, 0.5, 0.1)
     startScreenGroup:insert(startButton)
 
@@ -55,10 +70,20 @@ local function createStartScreen()
         x = startButton.x,
         y = startButton.y,
         font = native.systemFontBold,
-        fontSize = 24
+        fontSize = 30
     })
     buttonText:setFillColor(1, 1, 1)
     startScreenGroup:insert(buttonText)
+
+    -- Efeito hover no botão
+    local function onHover(event)
+        if event.phase == "began" then
+            startButton:setFillColor(0.2, 0.6, 0.2)
+        elseif event.phase == "ended" then
+            startButton:setFillColor(0.1, 0.5, 0.1)
+        end
+    end
+    startButton:addEventListener("mouse", onHover)
 
     -- Listener para o botão de início
     startButton:addEventListener("tap", startGame)
@@ -70,6 +95,9 @@ function startGame()
         startScreenGroup:removeSelf() -- Remove a tela de início se ela já existir
         startScreenGroup = nil
     end
+
+    -- Parar a música de fundo ao iniciar o jogo
+    audio.stop()
 
     -- Load character jump images and initial setup
     local characterFrames = {
@@ -113,28 +141,29 @@ function startGame()
 
     -- Função de atualização da posição do personagem
     local function updatePosition()
-        -- Limite superior (altura máxima)
-        local alturaMaximaPermitida = screenTop + 450
-        if character.y < alturaMaximaPermitida then
-            character.y = alturaMaximaPermitida -- Impede que o personagem suba além do limite
+        local alturaMaximaPermitida = screenTop + 450 -- Limite superior para a altura do pulo
+        local _, velocityY = character:getLinearVelocity()
+
+        -- Verifica se o personagem atingiu a altura máxima e não está em colisão
+        if character.y <= alturaMaximaPermitida and velocityY <= 0 then
+            -- Aplica uma força de queda para forçar a descida
+            character:setLinearVelocity(0, 50)
         end
 
-        -- Limites para impedir que o personagem saia pelas laterais
+        -- Limite inferior para evitar que o personagem caia fora da tela
+        character.y = math.min(character.y, screenBottom - 150)
+
+        -- Limites laterais para impedir que o personagem saia da tela
         character.x = math.max(screenLeft + 150, math.min(character.x, screenRight - 150))
 
         -- Se o personagem estiver no chão, mudar para imag_0 (posição de pé)
         if character.y >= screenBottom - 150 then
             character.fill = { type = "image", filename = characterFrames[1] } -- imag_0
         end
-
-        -- Limite inferior para evitar que o personagem caia fora da tela
-        character.y = math.min(character.y, screenBottom - 150)
     end
 
     -- Adiciona o listener para atualizar a posição do personagem em cada quadro
     Runtime:addEventListener("enterFrame", updatePosition)
-
-
 
     local weightBar = display.newRect(display.contentCenterX, 20, character.weight, 20)
     weightBar:setFillColor(0, 1, 0)
