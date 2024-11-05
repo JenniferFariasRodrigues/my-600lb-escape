@@ -17,54 +17,59 @@ local background = display.newImageRect("background/background_5.jpg", display.c
 background.x = display.contentCenterX
 background.y = display.contentCenterY
 
--- Tela inicial
-local startScreenGroup = display.newGroup()
+-- Variável global para a tela inicial
+local startScreenGroup
 
-local titleText = display.newText({
-    text = "My 600-lb Escape",
-    x = display.contentCenterX,
-    y = display.contentCenterY - 100,
-    font = native.systemFontBold,
-    fontSize = 40
-})
-titleText:setFillColor(0, 0, 0)
-startScreenGroup:insert(titleText)
+local function createStartScreen()
+    startScreenGroup = display.newGroup()
 
-local rulesText = display.newText({
-    text =
-    "Regras:\n- Pule os obstáculos ricos em carboidratos.\n- Colida com alimentos saudáveis para perder peso.\n- Evite ganhar peso acima de 300kg.\n- Evite perder peso abaixo de 45kg.",
-    x = display.contentCenterX,
-    y = display.contentCenterY,
-    width = display.contentWidth - 40,
-    font = native.systemFont,
-    fontSize = 20,
-    align = "center"
-})
-rulesText:setFillColor(0, 0, 0)
-startScreenGroup:insert(rulesText)
+    local titleText = display.newText({
+        text = "My 600-lb Escape",
+        x = display.contentCenterX,
+        y = display.contentCenterY - 100,
+        font = native.systemFontBold,
+        fontSize = 40
+    })
+    titleText:setFillColor(0, 0, 0)
+    startScreenGroup:insert(titleText)
 
-local startButton = display.newRect(display.contentCenterX, display.contentCenterY + 150, 150, 50)
-startButton:setFillColor(0.1, 0.5, 0.1)
-startScreenGroup:insert(startButton)
+    local rulesText = display.newText({
+        text =
+        "Regras:\n- Pule os obstáculos ricos em carboidratos.\n- Colida com alimentos saudáveis para perder peso.\n- Evite ganhar peso acima de 300kg.\n- Evite perder peso abaixo de 45kg.",
+        x = display.contentCenterX,
+        y = display.contentCenterY,
+        width = display.contentWidth - 40,
+        font = native.systemFont,
+        fontSize = 20,
+        align = "center"
+    })
+    rulesText:setFillColor(0, 0, 0)
+    startScreenGroup:insert(rulesText)
 
-local buttonText = display.newText({
-    text = "Start",
-    x = startButton.x,
-    y = startButton.y,
-    font = native.systemFontBold,
-    fontSize = 24
-})
-buttonText:setFillColor(1, 1, 1)
-startScreenGroup:insert(buttonText)
+    local startButton = display.newRect(display.contentCenterX, display.contentCenterY + 150, 150, 50)
+    startButton:setFillColor(0.1, 0.5, 0.1)
+    startScreenGroup:insert(startButton)
 
--- Variáveis globais para obstáculos
-upperObstacles = {}
-lowerObstacles = {}
+    local buttonText = display.newText({
+        text = "Start",
+        x = startButton.x,
+        y = startButton.y,
+        font = native.systemFontBold,
+        fontSize = 24
+    })
+    buttonText:setFillColor(1, 1, 1)
+    startScreenGroup:insert(buttonText)
+
+    -- Listener para o botão de início
+    startButton:addEventListener("tap", startGame)
+end
 
 -- Função para iniciar o jogo
-local function startGame()
-    startScreenGroup:removeSelf() -- Remove a tela de início
-    startScreenGroup = nil
+function startGame()
+    if startScreenGroup then
+        startScreenGroup:removeSelf() -- Remove a tela de início se ela já existir
+        startScreenGroup = nil
+    end
 
     -- Load character jump images and initial setup
     local characterFrames = {
@@ -193,7 +198,7 @@ local function startGame()
             display.remove(gameOverImage)
             -- Reinicia o jogo
             physics.start()
-            startGame()
+            createStartScreen() -- Recria a tela de início
         end
         yesButton:addEventListener("tap", onYesButtonTap)
 
@@ -310,5 +315,5 @@ local function startGame()
     Runtime:addEventListener("touch", onScreenTouch)
 end
 
--- Listener para o botão de início
-startButton:addEventListener("tap", startGame)
+-- Cria a tela inicial ao iniciar o jogo
+createStartScreen()
