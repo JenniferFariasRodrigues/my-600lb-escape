@@ -26,7 +26,7 @@ local function createStartScreen()
     local titleText = display.newText({
         text = "My 600-lb Escape",
         x = display.contentCenterX,
-        y = display.contentCenterY - 100,
+        y = display.contentCenterY - 300, -- Ajuste para subir o título
         font = native.systemFontBold,
         fontSize = 40
     })
@@ -35,10 +35,10 @@ local function createStartScreen()
 
     local rulesText = display.newText({
         text =
-        "Regras:\n- Pule os obstáculos ricos em carboidratos.\n- Colida com alimentos saudáveis para perder peso.\n- Evite ganhar peso acima de 300kg.\n- Evite perder peso abaixo de 45kg.",
+        "Regras:\n- Pule os obstáculos ricos em carboidratos.\n- Colida com alimentos saudáveis para perder peso.\n- Evite ganhar peso acima de 300kg.\n- Evite perder peso abaixo de 45kg.\n- O personagem fica mais lento ao pular conforme ganha peso e mais rápido conforme perde peso.",
         x = display.contentCenterX,
-        y = display.contentCenterY,
-        width = display.contentWidth - 40,
+        y = display.contentCenterY - 150, -- Ajuste conforme necessário
+        width = display.contentWidth - 140,
         font = native.systemFont,
         fontSize = 20,
         align = "center"
@@ -46,7 +46,10 @@ local function createStartScreen()
     rulesText:setFillColor(0, 0, 0)
     startScreenGroup:insert(rulesText)
 
-    local startButton = display.newRect(display.contentCenterX, display.contentCenterY + 150, 150, 50)
+
+    --local startButton = display.newRect(display.contentCenterX, display.contentCenterY + 150, 150, 50)
+    local startButton = display.newRect(display.contentCenterX, display.contentCenterY, 150, 50)
+
     startButton:setFillColor(0.1, 0.5, 0.1)
     startScreenGroup:insert(startButton)
 
