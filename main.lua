@@ -6,6 +6,17 @@ local physics = require("physics")
 physics.start()
 physics.setGravity(0, 9.8)
 
+-- Load audio library
+local audio = require("audio")
+
+-- Load the background music
+local startMusic = audio.loadStream("audio/start_music.mp3")
+
+-- Function to play music at the start screen
+local function playStartMusic()
+    audio.play(startMusic, { loops = -1 })
+end
+
 -- Screen boundaries
 local screenLeft = display.screenOriginX
 local screenRight = display.contentWidth - display.screenOriginX
@@ -22,6 +33,9 @@ local startScreenGroup
 
 local function createStartScreen()
     startScreenGroup = display.newGroup()
+
+    -- Play the background music when the start screen is created
+    playStartMusic()
 
     local titleText = display.newText({
         text = "My 600-lb Escape",
@@ -46,10 +60,8 @@ local function createStartScreen()
     rulesText:setFillColor(0, 0, 0)
     startScreenGroup:insert(rulesText)
 
-
-    --local startButton = display.newRect(display.contentCenterX, display.contentCenterY + 150, 150, 50)
-    local startButton = display.newRect(display.contentCenterX, display.contentCenterY, 150, 50)
-
+    -- Criação do botão de início com aumento de tamanho
+    local startButton = display.newRect(display.contentCenterX, display.contentCenterY, 200, 60)
     startButton:setFillColor(0.1, 0.5, 0.1)
     startScreenGroup:insert(startButton)
 
@@ -58,10 +70,20 @@ local function createStartScreen()
         x = startButton.x,
         y = startButton.y,
         font = native.systemFontBold,
-        fontSize = 24
+        fontSize = 30
     })
     buttonText:setFillColor(1, 1, 1)
     startScreenGroup:insert(buttonText)
+
+    -- Efeito hover no botão
+    local function onHover(event)
+        if event.phase == "began" then
+            startButton:setFillColor(0.2, 0.6, 0.2)
+        elseif event.phase == "ended" then
+            startButton:setFillColor(0.1, 0.5, 0.1)
+        end
+    end
+    startButton:addEventListener("mouse", onHover)
 
     -- Listener para o botão de início
     startButton:addEventListener("tap", startGame)
@@ -73,6 +95,9 @@ function startGame()
         startScreenGroup:removeSelf() -- Remove a tela de início se ela já existir
         startScreenGroup = nil
     end
+
+    -- Parar a música de fundo ao iniciar o jogo
+    audio.stop()
 
     -- Load character jump images and initial setup
     local characterFrames = {
@@ -137,11 +162,8 @@ function startGame()
         end
     end
 
-
     -- Adiciona o listener para atualizar a posição do personagem em cada quadro
     Runtime:addEventListener("enterFrame", updatePosition)
-
-
 
     local weightBar = display.newRect(display.contentCenterX, 20, character.weight, 20)
     weightBar:setFillColor(0, 1, 0)
