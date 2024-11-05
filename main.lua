@@ -113,23 +113,27 @@ function startGame()
 
     -- Função de atualização da posição do personagem
     local function updatePosition()
-        -- Limite superior (altura máxima)
-        local alturaMaximaPermitida = screenTop + 450
-        if character.y < alturaMaximaPermitida then
-            character.y = alturaMaximaPermitida -- Impede que o personagem suba além do limite
+        local alturaMaximaPermitida = screenTop + 450 -- Limite superior para a altura do pulo
+        local _, velocityY = character:getLinearVelocity()
+
+        -- Verifica se o personagem atingiu a altura máxima e não está em colisão
+        if character.y <= alturaMaximaPermitida and velocityY <= 0 then
+            -- Aplica uma força de queda para forçar a descida
+            character:setLinearVelocity(0, 50)
         end
 
-        -- Limites para impedir que o personagem saia pelas laterais
+        -- Limite inferior para evitar que o personagem caia fora da tela
+        character.y = math.min(character.y, screenBottom - 150)
+
+        -- Limites laterais para impedir que o personagem saia da tela
         character.x = math.max(screenLeft + 150, math.min(character.x, screenRight - 150))
 
         -- Se o personagem estiver no chão, mudar para imag_0 (posição de pé)
         if character.y >= screenBottom - 150 then
             character.fill = { type = "image", filename = characterFrames[1] } -- imag_0
         end
-
-        -- Limite inferior para evitar que o personagem caia fora da tela
-        character.y = math.min(character.y, screenBottom - 150)
     end
+
 
     -- Adiciona o listener para atualizar a posição do personagem em cada quadro
     Runtime:addEventListener("enterFrame", updatePosition)
