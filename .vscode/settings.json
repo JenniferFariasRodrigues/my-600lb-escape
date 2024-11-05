@@ -1,3 +1,8 @@
 {
-  "Lua.diagnostics.globals": ["display"]
+  "Lua.diagnostics.globals": [
+    "display"
+  ],
+  "Lua.diagnostics.disable": [
+    "undefined-global"
+  ]
 }

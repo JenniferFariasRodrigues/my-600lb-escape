@@ -91,10 +91,33 @@ local function updateWeight()
 end
 
 -- Adding obstacles with automatic movement and carb-based scaling
+-- local function createObstacle(name, imgPath, carbs, yPosition, speed)
+--     local sizeScale = 50 + carbs * 0.5
+--     local obstacle = display.newImageRect(imgPath, sizeScale, sizeScale)
+--     obstacle.x = math.random(screenLeft + 50, screenRight - 50)
+--     obstacle.y = yPosition
+--     physics.addBody(obstacle, "static")
+--     obstacle.name = name
+--     obstacle.carbs = carbs
+
+--     -- Move obstacle across screen
+--     local function moveObstacle()
+--         if obstacle.x < screenLeft - 50 then
+--             obstacle.x = screenRight + 50   -- Wrap around
+--         else
+--             obstacle.x = obstacle.x - speed -- Move left
+--         end
+--     end
+--     Runtime:addEventListener("enterFrame", moveObstacle)
+--     return obstacle
+-- end
+
 local function createObstacle(name, imgPath, carbs, yPosition, speed)
-    local sizeScale = 50 + carbs * 0.5
+    local sizeScale = 70 + carbs * 0.5
     local obstacle = display.newImageRect(imgPath, sizeScale, sizeScale)
-    obstacle.x = math.random(screenLeft + 50, screenRight - 50)
+
+    -- Adicionar um espaçamento maior e randomize a posição inicial
+    obstacle.x = math.random(screenLeft + 30, screenRight - 30) -- valores para mais espaçamento
     obstacle.y = yPosition
     physics.addBody(obstacle, "static")
     obstacle.name = name
@@ -103,14 +126,15 @@ local function createObstacle(name, imgPath, carbs, yPosition, speed)
     -- Move obstacle across screen
     local function moveObstacle()
         if obstacle.x < screenLeft - 50 then
-            obstacle.x = screenRight + 50   -- Wrap around
+            obstacle.x = screenRight + math.random(100, 200) -- Reposiciona com espaçamento aleatório
         else
-            obstacle.x = obstacle.x - speed -- Move left
+            obstacle.x = obstacle.x - speed                  -- Move o obstáculo para a esquerda
         end
     end
     Runtime:addEventListener("enterFrame", moveObstacle)
     return obstacle
 end
+
 
 -- Create upper and lower obstacles
 local upperObstacles = {
@@ -126,10 +150,10 @@ local lowerObstacles = {
     { name = "bread",                path = "obstacles/bread.png",                carbs = 60 },
     { name = "rice",                 path = "obstacles/rice.png",                 carbs = 40 },
     { name = "noodle",               path = "obstacles/noodle.png",               carbs = 45 },
-    { name = "estresse",             path = "obstacles/estresse.png",             carbs = 35 },
-    { name = "work_a_lot",           path = "obstacles/work_a_lot.png",           carbs = 125 },
-    { name = "ice_cream",            path = "obstacles/ice_cream.png",            carbs = 75 },
-    { name = "sedentary_life_style", path = "obstacles/sedentary_life_style.png", carbs = 225 },
+    { name = "estresse",             path = "obstacles/estresse.png",             carbs = 55 },
+    { name = "work_a_lot",           path = "obstacles/work_a_lot.png",           carbs = 75 },
+    { name = "ice_cream",            path = "obstacles/ice_cream.png",            carbs = 50 },
+    { name = "sedentary_life_style", path = "obstacles/sedentary_life_style.png", carbs = 125 },
 
 }
 
