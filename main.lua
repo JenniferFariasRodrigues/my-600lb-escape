@@ -146,61 +146,62 @@ local function startGame()
         display.remove(weightBar)
         display.remove(weightText)
 
-        -- Reproduzir o vídeo de game over
-        media.playVideo("gameOver/gameOverVideo.mp4", true, function(event)
-            if event.completed or event.error then
-                -- Mostrar mensagem e botões após o término do vídeo ou em caso de erro
-                local tryAgainText = display.newText({
-                    text = "Try again?",
-                    x = display.contentCenterX,
-                    y = display.contentCenterY - 50,
-                    font = native.systemFontBold,
-                    fontSize = 36
-                })
-                tryAgainText:setFillColor(1, 1, 1)
+        -- Exibir a imagem de "Game Over"
+        local gameOverImage = display.newImageRect("gameOver/gameOver.png", display.contentWidth, display.contentHeight)
+        gameOverImage.x = display.contentCenterX
+        gameOverImage.y = display.contentCenterY
 
-                -- Botão "Yes"
-                local yesButton = display.newRect(display.contentCenterX - 60, display.contentCenterY + 50, 100, 50)
-                yesButton:setFillColor(0.2, 0.8, 0.2)
-                local yesText = display.newText({
-                    text = "Yes",
-                    x = yesButton.x,
-                    y = yesButton.y,
-                    font = native.systemFontBold,
-                    fontSize = 24
-                })
+        -- Mostrar mensagem e botões sobre a imagem de "Game Over"
+        local tryAgainText = display.newText({
+            text = "Try again?",
+            x = display.contentCenterX,
+            y = display.contentCenterY - 50,
+            font = native.systemFontBold,
+            fontSize = 36
+        })
+        tryAgainText:setFillColor(1, 1, 1)
 
-                -- Botão "No"
-                local noButton = display.newRect(display.contentCenterX + 60, display.contentCenterY + 50, 100, 50)
-                noButton:setFillColor(0.8, 0.2, 0.2)
-                local noText = display.newText({
-                    text = "No",
-                    x = noButton.x,
-                    y = noButton.y,
-                    font = native.systemFontBold,
-                    fontSize = 24
-                })
+        -- Botão "Yes"
+        local yesButton = display.newRect(display.contentCenterX - 60, display.contentCenterY + 50, 100, 50)
+        yesButton:setFillColor(0.2, 0.8, 0.2)
+        local yesText = display.newText({
+            text = "Yes",
+            x = yesButton.x,
+            y = yesButton.y,
+            font = native.systemFontBold,
+            fontSize = 24
+        })
 
-                -- Ação para o botão "Yes"
-                local function onYesButtonTap()
-                    display.remove(tryAgainText)
-                    display.remove(yesButton)
-                    display.remove(yesText)
-                    display.remove(noButton)
-                    display.remove(noText)
-                    -- Reinicia o jogo
-                    physics.start()
-                    startGame()
-                end
-                yesButton:addEventListener("tap", onYesButtonTap)
+        -- Botão "No"
+        local noButton = display.newRect(display.contentCenterX + 60, display.contentCenterY + 50, 100, 50)
+        noButton:setFillColor(0.8, 0.2, 0.2)
+        local noText = display.newText({
+            text = "No",
+            x = noButton.x,
+            y = noButton.y,
+            font = native.systemFontBold,
+            fontSize = 24
+        })
 
-                -- Ação para o botão "No"
-                local function onNoButtonTap()
-                    native.requestExit() -- Fecha o aplicativo
-                end
-                noButton:addEventListener("tap", onNoButtonTap)
-            end
-        end)
+        -- Ação para o botão "Yes"
+        local function onYesButtonTap()
+            display.remove(tryAgainText)
+            display.remove(yesButton)
+            display.remove(yesText)
+            display.remove(noButton)
+            display.remove(noText)
+            display.remove(gameOverImage)
+            -- Reinicia o jogo
+            physics.start()
+            startGame()
+        end
+        yesButton:addEventListener("tap", onYesButtonTap)
+
+        -- Ação para o botão "No"
+        local function onNoButtonTap()
+            native.requestExit() -- Fecha o aplicativo
+        end
+        noButton:addEventListener("tap", onNoButtonTap)
     end
 
     local function updateWeight()
