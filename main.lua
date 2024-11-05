@@ -27,12 +27,12 @@ local titleText = display.newText({
     font = native.systemFontBold,
     fontSize = 40
 })
-titleText:setFillColor(1, 1, 1)
+titleText:setFillColor(0, 0, 0)
 startScreenGroup:insert(titleText)
 
 local rulesText = display.newText({
     text =
-    "Regras:\n- Pule os obstáculos ricos em carboidratos.\n- Colida com alimentos saudáveis para perder peso.\n- Evite ganhar peso acima de 300kg.",
+    "Regras:\n- Pule os obstáculos ricos em carboidratos.\n- Colida com alimentos saudáveis para perder peso.\n- Evite ganhar peso acima de 300kg.\n- Evite perder peso abaixo de 45kg.",
     x = display.contentCenterX,
     y = display.contentCenterY,
     width = display.contentWidth - 40,
@@ -40,7 +40,7 @@ local rulesText = display.newText({
     fontSize = 20,
     align = "center"
 })
-rulesText:setFillColor(0.8, 0.8, 0.8)
+rulesText:setFillColor(0, 0, 0)
 startScreenGroup:insert(rulesText)
 
 local startButton = display.newRect(display.contentCenterX, display.contentCenterY + 150, 150, 50)
@@ -71,18 +71,23 @@ local function startGame()
         "character/imag_6_processed.png" -- Final position to reset to standing
     }
 
-    local character = display.newImageRect(characterFrames[1], 120, 140)
+    local character = display.newImageRect(characterFrames[2], 120, 140) -- Iniciar com imag_1
     character.x = display.contentCenterX
-    character.y = screenBottom - 150 -- Initial position above ground level
+    character.y = screenBottom - 150                                     -- Initial position above ground level
     physics.addBody(character, "dynamic", { radius = 30, bounce = 0 })
-    character.isFixedRotation = true -- Prevent character from rotating
-    character.weight = 66            -- Initial weight set to 66 kg
+    character.isFixedRotation = true                                     -- Prevent character from rotating
+    character.weight = 66                                                -- Initial weight set to 66 kg
 
     -- Dentro da função de atualização ou pulo do personagem
     local function updatePosition()
         character.y = math.min(character.y, screenBottom - 150) -- Limite inferior
         character.y = math.max(character.y, screenTop + 150)    -- Limite superior
         character.x = math.max(screenLeft + 150, math.min(character.x, screenRight - 150))
+
+        -- Se o personagem estiver no chão, mudar para imag_1
+        if character.y >= screenBottom - 150 then
+            character.fill = { type = "image", filename = characterFrames[2] } -- imag_1
+        end
     end
 
     Runtime:addEventListener("enterFrame", updatePosition)
@@ -113,7 +118,7 @@ local function startGame()
     -- Função para exibir "Game Over" e parar o jogo
     local function gameOver()
         local gameOverText = display.newText({
-            text = "Game Over!",
+            text = "Game Over. You've reached 600lb.",
             x = display.contentCenterX,
             y = display.contentCenterY,
             font = native.systemFontBold,
@@ -124,32 +129,20 @@ local function startGame()
         -- Pausa a física do jogo
         physics.pause()
 
-        -- Verifica e remove os event listeners, se existirem
-        if Runtime:hasEventListener("enterFrame", updatePosition) then
-            Runtime:removeEventListener("enterFrame", updatePosition)
-        end
-
-        if Runtime:hasEventListener("touch", onScreenTouch) then
-            Runtime:removeEventListener("touch", onScreenTouch)
-        end
-
-        if character and character.removeEventListener then
-            character:removeEventListener("collision", onCollision)
-        end
+        -- Remove event listeners com verificação
+        pcall(function() Runtime:removeEventListener("enterFrame", updatePosition) end)
+        pcall(function() Runtime:removeEventListener("touch", onScreenTouch) end)
+        pcall(function() character:removeEventListener("collision", onCollision) end)
     end
-
-    -- Listener para o botão de início
-    startButton:addEventListener("tap", startGame)
-
 
     local function updateWeight()
         weightBar.width = character.weight
         weightText.text = tostring(character.weight) .. " kg"
         if character.weight >= 300 then
             gameOver()
-        elseif character.weight > 100 then
+        elseif character.weight > 100 or character.weight < 45 then
             weightBar:setFillColor(1, 0, 0)
-            weightText:setFillColor(1, 0, 0)
+            weightText:setFillColor(0, 0, 0)
         else
             weightBar:setFillColor(0, 1, 0)
             weightText:setFillColor(0, 0, 0)
@@ -208,12 +201,8 @@ local function startGame()
         if event.phase == "began" and event.other.carbs ~= nil then
             if event.other.carbs > 20 then
                 character.weight = character.weight + 5
-                weightBar:setFillColor(1, 0, 0)
-                weightText:setFillColor(1, 0, 0)
             else
                 character.weight = character.weight - 2
-                weightBar:setFillColor(0, 1, 0)
-                weightText:setFillColor(0, 0, 0)
             end
             updateWeight()
         end
