@@ -11,10 +11,22 @@ local audio = require("audio")
 
 -- Load the background music
 local startMusic = audio.loadStream("audio/start_music.mp3")
+local gameMusic = audio.loadStream("audio/sonic_song.mp3")
+local gameOverMusic = audio.loadStream("audio/game_over_song.mp3")
 
 -- Function to play music at the start screen
 local function playStartMusic()
     audio.play(startMusic, { loops = -1 })
+end
+
+-- Function to play game music
+local function playGameMusic()
+    audio.play(gameMusic, { loops = -1 })
+end
+
+-- Function to play game over music
+local function playGameOverMusic()
+    audio.play(gameOverMusic, { loops = 0 })
 end
 
 -- Screen boundaries
@@ -96,8 +108,9 @@ function startGame()
         startScreenGroup = nil
     end
 
-    -- Parar a música de fundo ao iniciar o jogo
+    -- Parar a música de fundo e iniciar a música do jogo
     audio.stop()
+    playGameMusic()
 
     -- Load character jump images and initial setup
     local characterFrames = {
@@ -181,6 +194,10 @@ function startGame()
     local function gameOver()
         -- Pausa a física do jogo
         physics.pause()
+
+        -- Parar a música do jogo e iniciar a música de game over
+        audio.stop()
+        playGameOverMusic()
 
         -- Remove event listeners com verificação
         pcall(function() Runtime:removeEventListener("enterFrame", updatePosition) end)
