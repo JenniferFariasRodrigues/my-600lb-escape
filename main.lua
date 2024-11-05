@@ -11,7 +11,7 @@ local audio = require("audio")
 
 -- Load the background music
 local startMusic = audio.loadStream("audio/start_music.mp3")
-local gameMusic = audio.loadStream("audio/eye_of_the_tiger_song.mp3")
+local gameMusic = audio.loadStream("audio/sonic_song.mp3")
 local gameOverMusic = audio.loadStream("audio/game_over_song.mp3")
 
 -- Function to play music at the start screen
