@@ -11,7 +11,7 @@ local audio = require("audio")
 
 -- Load the background music
 local startMusic = audio.loadStream("audio/start_music.mp3")
-local gameMusic = audio.loadStream("audio/sonic_song.mp3")
+local gameMusic = audio.loadStream("audio/game_music.mp3")
 local gameOverMusic = audio.loadStream("audio/game_over_song.mp3")
 
 -- Function to play music at the start screen
@@ -44,6 +44,14 @@ background.y = display.contentCenterY
 local startScreenGroup
 
 local function createStartScreen()
+    -- Certifique-se de recriar o fundo quando a tela de início for exibida
+    if not background then
+        background = display.newImageRect("background/background_5.jpg", display.contentWidth, display.contentHeight)
+        background.x = display.contentCenterX
+        background.y = display.contentCenterY
+    end
+    background.isVisible = true -- Garanta que o fundo esteja visível
+
     startScreenGroup = display.newGroup()
 
     -- Play the background music when the start screen is created
@@ -63,7 +71,7 @@ local function createStartScreen()
         text =
         "Regras:\n- Pule os obstáculos ricos em carboidratos.\n- Colida com alimentos saudáveis para perder peso.\n- Evite ganhar peso acima de 300kg.\n- Evite perder peso abaixo de 45kg.\n- O personagem fica mais lento ao pular conforme ganha peso e mais rápido conforme perde peso.",
         x = display.contentCenterX,
-        y = display.contentCenterY - 150, -- Ajuste conforme necessário
+        y = display.contentCenterY - 150,
         width = display.contentWidth - 140,
         font = native.systemFont,
         fontSize = 20,
@@ -261,7 +269,10 @@ function startGame()
             display.remove(noButton)
             display.remove(noText)
             display.remove(gameOverImage)
-            -- Reinicia o jogo
+            -- Reinicia a música de início
+            audio.stop()
+            playStartMusic()
+            -- Reinicia a física e recria a tela de início
             physics.start()
             createStartScreen() -- Recria a tela de início
         end
@@ -269,8 +280,9 @@ function startGame()
 
         -- Ação para o botão "No"
         local function onNoButtonTap()
-            -- Simula uma saída "suave" no iOS
+            -- Simula uma saída "suave" para testes; pode não funcionar em dispositivos iOS.
             print("Game ended by user.")
+            native.requestExit() -- Tente usar isso em um dispositivo Android ou em sistemas que suportam a função.
         end
         noButton:addEventListener("tap", onNoButtonTap)
     end
