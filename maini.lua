@@ -44,19 +44,14 @@ background.y = display.contentCenterY
 local startScreenGroup
 
 local function createStartScreen()
-    -- Remove o background anterior, caso ele ainda esteja na tela
-    if background then
-        display.remove(background)
-        background = nil
+    -- Certifique-se de recriar o fundo quando a tela de início for exibida
+    if not background then
+        background = display.newImageRect("background/background_5.jpg", display.contentWidth, display.contentHeight)
+        background.x = display.contentCenterX
+        background.y = display.contentCenterY
     end
-
-    -- Recria o fundo quando a tela de início for exibida
-    background = display.newImageRect("background/background_5.jpg", display.contentWidth, display.contentHeight)
-    background.x = display.contentCenterX
-    background.y = display.contentCenterY
     background.isVisible = true -- Garanta que o fundo esteja visível
 
-    -- Continue com o resto da criação da tela inicial
     startScreenGroup = display.newGroup()
 
     -- Play the background music when the start screen is created
@@ -65,14 +60,12 @@ local function createStartScreen()
     local titleText = display.newText({
         text = "My 600-lb Escape",
         x = display.contentCenterX,
-        y = display.contentCenterY - 300,
+        y = display.contentCenterY - 300, -- Ajuste para subir o título
         font = native.systemFontBold,
         fontSize = 40
     })
     titleText:setFillColor(0, 0, 0)
     startScreenGroup:insert(titleText)
-
-
 
     local rulesText = display.newText({
         text =
@@ -141,7 +134,7 @@ function startGame()
     character.y = screenBottom - 150                                     -- Initial position above ground level
     physics.addBody(character, "dynamic", { radius = 30, bounce = 0 })   -- Adiciona o corpo de física
     character.isFixedRotation = true                                     -- Prevent character from rotating
-    character.weight = 60                                                -- Initial weight set to 60 kg
+    character.weight = 66                                                -- Initial weight set to 66 kg
 
     -- Dentro da função de atualização ou pulo do personagem
     -- Inicialize a variável jumpIndex como local
@@ -193,13 +186,13 @@ function startGame()
     -- Adiciona o listener para atualizar a posição do personagem em cada quadro
     Runtime:addEventListener("enterFrame", updatePosition)
 
-    local weightBar = display.newRect(display.contentCenterX, 60, character.weight, 20)
+    local weightBar = display.newRect(display.contentCenterX, 20, character.weight, 20)
     weightBar:setFillColor(0, 1, 0)
 
     local weightText = display.newText({
         text = tostring(character.weight) .. " kg",
         x = display.contentCenterX,
-        y = 60,
+        y = 20,
         font = native.systemFontBold,
         fontSize = 16
     })
@@ -289,14 +282,14 @@ function startGame()
         local function onNoButtonTap()
             -- Simula uma saída "suave" para testes; pode não funcionar em dispositivos iOS.
             print("Game ended by user.")
-            native.requestExit() -- Usar em um dispositivo Android ou em sistemas que suportam a função.
+            native.requestExit() -- Tente usar isso em um dispositivo Android ou em sistemas que suportam a função.
         end
         noButton:addEventListener("tap", onNoButtonTap)
     end
 
     local function updateWeight()
         if character.weight == nil then
-            character.weight = 60 -- Define um valor padrão se estiver nil
+            character.weight = 66 -- Define um valor padrão se estiver nil
         end
 
         weightBar.width = character.weight
@@ -347,43 +340,35 @@ function startGame()
     lowerObstacles = {}
 
     local upperObstacleInfo = {
-        { name = "crossfit",         path = "obstacles/crossfit.png",         carbs = 0 },
-        { name = "run",              path = "obstacles/run.png",              carbs = 0 },
-        { name = "barbecue_healthy", path = "obstacles/barbecue_healthy.png", carbs = 0 },
-        { name = "strawberry",       path = "obstacles/strawberry.png",       carbs = 7.7 },
-        { name = "eggplant",         path = "obstacles/eggplant.png",         carbs = 5.9 },
+        { name = "crossfit",         path = "obstacles/crossfit.png",         carbs = 10 },
+        { name = "run",              path = "obstacles/run.png",              carbs = 90 },
+        { name = "barbecue_healthy", path = "obstacles/barbecue_healthy.png", carbs = 15 },
+        { name = "strawberry",       path = "obstacles/strawberry.png",       carbs = 5 },
+        { name = "eggplant",         path = "obstacles/eggplant.png",         carbs = 3 },
         { name = "gym",              path = "obstacles/gym.png",              carbs = 0 },
         { name = "meat",             path = "obstacles/meat.png",             carbs = 0 },
     }
 
     local lowerObstacleInfo = {
-        { name = "bread",                path = "obstacles/bread.png",                carbs = 49 },
-        { name = "rice",                 path = "obstacles/rice.png",                 carbs = 28 },
-        { name = "noodle",               path = "obstacles/noodle.png",               carbs = 25 },
-        { name = "estresse",             path = "obstacles/estresse.png",             carbs = 0 },
-        { name = "work_a_lot",           path = "obstacles/work_a_lot.png",           carbs = 0 },
-        { name = "ice_cream",            path = "obstacles/ice_cream.png",            carbs = 23 },
-        { name = "sedentary_life_style", path = "obstacles/sedentary_life_style.png", carbs = 0 },
+        { name = "bread",                path = "obstacles/bread.png",                carbs = 60 },
+        { name = "rice",                 path = "obstacles/rice.png",                 carbs = 40 },
+        { name = "noodle",               path = "obstacles/noodle.png",               carbs = 45 },
+        { name = "estresse",             path = "obstacles/estresse.png",             carbs = 55 },
+        { name = "work_a_lot",           path = "obstacles/work_a_lot.png",           carbs = 75 },
+        { name = "ice_cream",            path = "obstacles/ice_cream.png",            carbs = 50 },
+        { name = "sedentary_life_style", path = "obstacles/sedentary_life_style.png", carbs = 125 },
     }
 
-    -- Configuração de espaçamento entre obstáculos
-    local obstacleSpacing = 250 -- Ajuste para aumentar ou diminuir o espaçamento horizontal
-
-
-    -- Criação dos obstáculos superiores com espaçamento horizontal
-    for i, info in ipairs(upperObstacleInfo) do
+    for _, info in ipairs(upperObstacleInfo) do
         local obstacle = createObstacle(info.name, info.path, info.carbs, screenTop + 450, 2)
         if obstacle then
-            obstacle.x = screenLeft + (i - 1) * obstacleSpacing + 490 -- Define o espaçamento horizontal
             table.insert(upperObstacles, obstacle)
         end
     end
 
-    -- Criação dos obstáculos inferiores com espaçamento horizontal
-    for i, info in ipairs(lowerObstacleInfo) do
+    for _, info in ipairs(lowerObstacleInfo) do
         local obstacle = createObstacle(info.name, info.path, info.carbs, screenBottom - 150, 1.5)
         if obstacle then
-            obstacle.x = screenLeft + (i - 1) * obstacleSpacing + 190 -- Define o espaçamento horizontal
             table.insert(lowerObstacles, obstacle)
         end
     end
