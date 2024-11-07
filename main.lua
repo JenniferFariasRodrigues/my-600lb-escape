@@ -302,20 +302,31 @@ function startGame()
         weightBar.width = character.weight
         weightText.text = tostring(character.weight) .. " kg"
 
-        if character.weight and character.weight >= 300 then
+        -- Condição de game over para peso menor que 45 kg ou maior que 300 kg
+        if character.weight <= 45 or character.weight >= 300 then
             gameOver()
-        elseif character.weight > 100 or character.weight < 45 then
-            weightBar:setFillColor(1, 0, 0)
-            weightText:setFillColor(0, 0, 0)
         else
-            weightBar:setFillColor(0, 1, 0)
-            weightText:setFillColor(0, 0, 0)
+            -- Alteração na cor da barra de peso se o peso estiver fora do intervalo saudável
+            if character.weight > 100 or character.weight < 45 then
+                weightBar:setFillColor(1, 0, 0)
+                weightText:setFillColor(0, 0, 0)
+            else
+                weightBar:setFillColor(0, 1, 0)
+                weightText:setFillColor(0, 0, 0)
+            end
         end
         print("Current weight: ", character.weight)
     end
 
+
     local function createObstacle(name, imgPath, carbs, yPosition, speed)
-        local sizeScale = 70 + carbs * 0.5
+        local sizeScale
+        if name == "sedentary_life_style" then
+            sizeScale = 200              -- Tamanho específico para o obstáculo "sedentary_life_style"
+        else
+            sizeScale = 90 + carbs * 0.5 -- Tamanho padrão para os demais obstáculos
+        end
+
         local obstacle = display.newImageRect(imgPath, sizeScale, sizeScale)
 
         if not obstacle then
@@ -342,6 +353,7 @@ function startGame()
         return obstacle
     end
 
+
     -- Criar obstáculos superiores e inferiores
     upperObstacles = {}
     lowerObstacles = {}
@@ -365,28 +377,43 @@ function startGame()
         { name = "ice_cream",            path = "obstacles/ice_cream.png",            carbs = 23 },
         { name = "sedentary_life_style", path = "obstacles/sedentary_life_style.png", carbs = 0 },
     }
+    -- Configuração de espaçamento e posições horizontais predefinidas
+    local obstacleSpacing = 350   -- Espaçamento horizontal
+    local availablePositions = {} -- Lista para armazenar posições 'x' disponíveis
 
-    -- Configuração de espaçamento entre obstáculos
-    local obstacleSpacing = 250 -- Ajuste para aumentar ou diminuir o espaçamento horizontal
+    -- Inicializar posições horizontais predefinidas para garantir espaçamento adequado
+    for i = 1, #upperObstacleInfo + #lowerObstacleInfo do
+        table.insert(availablePositions, screenLeft + (i - 1) * obstacleSpacing + 200)
+    end
 
+    -- Função para pegar uma posição 'x' aleatória e removê-la da lista
+    local function getRandomPosition()
+        if #availablePositions > 0 then
+            local index = math.random(1, #availablePositions)
+            local posX = table.remove(availablePositions, index)
+            return posX
+        end
+        return screenLeft + math.random(screenRight - screenLeft)
+    end
 
-    -- Criação dos obstáculos superiores com espaçamento horizontal
+    -- Criação dos obstáculos superiores com altura fixa
     for i, info in ipairs(upperObstacleInfo) do
         local obstacle = createObstacle(info.name, info.path, info.carbs, screenTop + 450, 2)
         if obstacle then
-            obstacle.x = screenLeft + (i - 1) * obstacleSpacing + 490 -- Define o espaçamento horizontal
+            obstacle.x = getRandomPosition() -- Atribui uma posição 'x' exclusiva
             table.insert(upperObstacles, obstacle)
         end
     end
 
-    -- Criação dos obstáculos inferiores com espaçamento horizontal
+    -- Criação dos obstáculos inferiores com altura fixa
     for i, info in ipairs(lowerObstacleInfo) do
         local obstacle = createObstacle(info.name, info.path, info.carbs, screenBottom - 150, 1.5)
         if obstacle then
-            obstacle.x = screenLeft + (i - 1) * obstacleSpacing + 190 -- Define o espaçamento horizontal
+            obstacle.x = getRandomPosition() -- Atribui uma posição 'x' exclusiva
             table.insert(lowerObstacles, obstacle)
         end
     end
+
 
     local function onCollision(event)
         if event.phase == "began" and event.other and event.other.carbs ~= nil then
