@@ -72,8 +72,6 @@ local function createStartScreen()
     titleText:setFillColor(0, 0, 0)
     startScreenGroup:insert(titleText)
 
-
-
     local rulesText = display.newText({
         text =
         "Regras:\n- Pule os obstáculos ricos em carboidratos.\n- Colida com alimentos saudáveis para perder peso.\n- Evite ganhar peso acima de 300kg.\n- Evite perder peso abaixo de 45kg.\n- O personagem fica mais lento ao pular conforme ganha peso e mais rápido conforme perde peso.",
@@ -157,10 +155,11 @@ function startGame()
 
         -- Verifica se o character ainda tem um corpo de física antes de aplicar impulso
         if character and character.applyLinearImpulse then
-            local _, velocityY = character:getLinearVelocity()
-            -- Aplica o impulso de pulo somente se o personagem estiver em uma altura segura
-            if character.y > (screenTop + 450) and velocityY >= 0 then        -- Verifica a altura e se o personagem não está subindo
-                character:applyLinearImpulse(0, -2, character.x, character.y) -- Controlled jump impulse
+            local velocityX, velocityY = character:getLinearVelocity()
+            if velocityX ~= nil and velocityY ~= nil then                         -- Adiciona verificação para evitar erro nil
+                if character.y > (screenTop + 450) and velocityY >= 0 then        -- Verifica a altura e se o personagem não está subindo
+                    character:applyLinearImpulse(0, -2, character.x, character.y) -- Controlled jump impulse
+                end
             end
         else
             print("Error: character does not have a physics body.")
@@ -170,27 +169,26 @@ function startGame()
     -- Função de atualização da posição do personagem
     local function updatePosition()
         local alturaMaximaPermitida = screenTop + 450 -- Limite superior para a altura do pulo
-        local _, velocityY = character:getLinearVelocity()
+        if character and character.getLinearVelocity then
+            local _, velocityY = character:getLinearVelocity()
 
-        -- Verifica se o personagem atingiu a altura máxima e não está em colisão
-        if character.y <= alturaMaximaPermitida and velocityY <= 0 then
-            -- Aplica uma força de queda para forçar a descida
-            character:setLinearVelocity(0, 50)
-        end
+            if character.y <= alturaMaximaPermitida and velocityY <= 0 then
+                character:setLinearVelocity(0, 50)
+            end
 
-        -- Limite inferior para evitar que o personagem caia fora da tela
-        character.y = math.min(character.y, screenBottom - 150)
+            -- Limite inferior para evitar que o personagem caia fora da tela
+            character.y = math.min(character.y, screenBottom - 150)
 
-        -- Limites laterais para impedir que o personagem saia da tela
-        character.x = math.max(screenLeft + 150, math.min(character.x, screenRight - 150))
+            -- Limites laterais para impedir que o personagem saia da tela
+            character.x = math.max(screenLeft + 150, math.min(character.x, screenRight - 150))
 
-        -- Se o personagem estiver no chão, mudar para imag_0 (posição de pé)
-        if character.y >= screenBottom - 150 then
-            character.fill = { type = "image", filename = characterFrames[1] } -- imag_0
+            -- Se o personagem estiver no chão, mudar para imag_0 (posição de pé)
+            if character.y >= screenBottom - 150 then
+                character.fill = { type = "image", filename = characterFrames[1] } -- imag_0
+            end
         end
     end
 
-    -- Adiciona o listener para atualizar a posição do personagem em cada quadro
     Runtime:addEventListener("enterFrame", updatePosition)
 
     local weightBar = display.newRect(display.contentCenterX, 60, character.weight, 20)
@@ -205,128 +203,78 @@ function startGame()
     })
     weightText:setFillColor(0, 0, 0)
 
-    -- Função para exibir "Game Over" e parar o jogo
     local function gameOver()
-        -- Pausa a física do jogo
         physics.pause()
-
-        -- Parar a música do jogo e iniciar a música de game over
         audio.stop()
         playGameOverMusic()
 
-        -- Remove event listeners com verificação
         pcall(function() Runtime:removeEventListener("enterFrame", updatePosition) end)
         pcall(function() Runtime:removeEventListener("touch", onScreenTouch) end)
         pcall(function() character:removeEventListener("collision", onCollision) end)
 
-        -- Remover elementos da tela
         display.remove(character)
-        for i = 1, #upperObstacles do
-            display.remove(upperObstacles[i])
-        end
-        for i = 1, #lowerObstacles do
-            display.remove(lowerObstacles[i])
-        end
-        display.remove(background)
         display.remove(weightBar)
         display.remove(weightText)
 
-        -- Exibir a imagem de "Game Over"
-        local gameOverImage = display.newImageRect("gameOver/gameOver.png", display.contentWidth, display.contentHeight)
+        local gameOverImage = display.newImageRect("gameOver/gameOver.jpeg", display.contentWidth, display.contentHeight)
         gameOverImage.x = display.contentCenterX
         gameOverImage.y = display.contentCenterY
 
-        -- Mostrar mensagem e botões um pouco acima do fundo da tela
-        local tryAgainText = display.newText({
-            text = "Try again?",
-            x = display.contentCenterX,
-            y = display.contentHeight - 300, -- Posição ajustada um pouco mais acima do fundo
-            font = native.systemFontBold,
-            fontSize = 36
-        })
-        tryAgainText:setFillColor(1, 1, 1)
-
-        -- Botão "Yes"
-        local yesButton = display.newRect(display.contentCenterX - 60, display.contentHeight - 230, 100, 50) -- Posição ajustada abaixo da mensagem
-        yesButton:setFillColor(0.2, 0.8, 0.2)
+        local yesButton = display.newRect(display.contentWidth * 0.15, display.contentHeight * 0.4, 160, 70)
+        yesButton:setFillColor(0.3, 0.9, 0.3)
         local yesText = display.newText({
             text = "Yes",
             x = yesButton.x,
             y = yesButton.y,
             font = native.systemFontBold,
-            fontSize = 24
+            fontSize = 28
         })
 
-        -- Botão "No"
-        local noButton = display.newRect(display.contentCenterX + 60, display.contentHeight - 230, 100, 50) -- Posição ajustada abaixo da mensagem
-        noButton:setFillColor(0.8, 0.2, 0.2)
+        local noButton = display.newRect(display.contentWidth * 0.4, display.contentHeight * 0.4, 160, 70)
+        noButton:setFillColor(0.9, 0.3, 0.3)
         local noText = display.newText({
             text = "No",
             x = noButton.x,
             y = noButton.y,
             font = native.systemFontBold,
-            fontSize = 24
+            fontSize = 28
         })
 
-        -- Ação para o botão "Yes"
         local function onYesButtonTap()
-            display.remove(tryAgainText)
+            display.remove(gameOverImage)
             display.remove(yesButton)
             display.remove(yesText)
             display.remove(noButton)
             display.remove(noText)
-            display.remove(gameOverImage)
-            -- Reinicia a música de início
-            audio.stop()
-            playStartMusic()
-            -- Reinicia a física e recria a tela de início
             physics.start()
-            createStartScreen() -- Recria a tela de início
+            createStartScreen()
         end
         yesButton:addEventListener("tap", onYesButtonTap)
 
-        -- Ação para o botão "No"
         local function onNoButtonTap()
-            -- Simula uma saída "suave" para testes; pode não funcionar em dispositivos iOS.
-            print("Game ended by user.")
-            native.requestExit() -- Usar em um dispositivo Android ou em sistemas que suportam a função.
+            print("Jogo encerrado.")
+            native.requestExit()
         end
         noButton:addEventListener("tap", onNoButtonTap)
     end
 
     local function updateWeight()
-        if character.weight == nil then
-            character.weight = 60 -- Define um valor padrão se estiver nil
-        end
-
         weightBar.width = character.weight
         weightText.text = tostring(character.weight) .. " kg"
 
-        -- Condição de game over para peso menor que 45 kg ou maior que 300 kg
         if character.weight <= 45 or character.weight >= 300 then
             gameOver()
         else
-            -- Alteração na cor da barra de peso se o peso estiver fora do intervalo saudável
-            if character.weight > 100 or character.weight < 45 then
+            if character.weight > 100 then
                 weightBar:setFillColor(1, 0, 0)
-                weightText:setFillColor(0, 0, 0)
             else
                 weightBar:setFillColor(0, 1, 0)
-                weightText:setFillColor(0, 0, 0)
             end
         end
-        print("Current weight: ", character.weight)
     end
 
-
     local function createObstacle(name, imgPath, carbs, yPosition, speed)
-        local sizeScale
-        if name == "sedentary_life_style" then
-            sizeScale = 200              -- Tamanho específico para o obstáculo "sedentary_life_style"
-        else
-            sizeScale = 90 + carbs * 0.5 -- Tamanho padrão para os demais obstáculos
-        end
-
+        local sizeScale = (name == "sedentary_life_style") and 200 or 90 + carbs * 0.5
         local obstacle = display.newImageRect(imgPath, sizeScale, sizeScale)
 
         if not obstacle then
@@ -341,20 +289,16 @@ function startGame()
         obstacle.carbs = carbs
 
         local function moveObstacle()
-            if obstacle and obstacle.x then -- Verifica se obstacle não é nil e tem a propriedade x
-                if obstacle.x < screenLeft - 50 then
-                    obstacle.x = screenRight + math.random(100, 200)
-                else
-                    obstacle.x = obstacle.x - speed
-                end
+            if obstacle.x < screenLeft - 50 then
+                obstacle.x = screenRight + math.random(100, 200)
+            else
+                obstacle.x = obstacle.x - speed
             end
         end
         Runtime:addEventListener("enterFrame", moveObstacle)
         return obstacle
     end
 
-
-    -- Criar obstáculos superiores e inferiores
     upperObstacles = {}
     lowerObstacles = {}
 
@@ -377,47 +321,44 @@ function startGame()
         { name = "ice_cream",            path = "obstacles/ice_cream.png",            carbs = 23 },
         { name = "sedentary_life_style", path = "obstacles/sedentary_life_style.png", carbs = 0 },
     }
-    -- Configuração de espaçamento e posições horizontais predefinidas
-    local obstacleSpacing = 350   -- Espaçamento horizontal
-    local availablePositions = {} -- Lista para armazenar posições 'x' disponíveis
 
-    -- Inicializar posições horizontais predefinidas para garantir espaçamento adequado
+    local obstacleSpacing = 350
+    local availablePositions = {}
+
     for i = 1, #upperObstacleInfo + #lowerObstacleInfo do
         table.insert(availablePositions, screenLeft + (i - 1) * obstacleSpacing + 200)
     end
 
-    -- Função para pegar uma posição 'x' aleatória e removê-la da lista
     local function getRandomPosition()
         if #availablePositions > 0 then
             local index = math.random(1, #availablePositions)
-            local posX = table.remove(availablePositions, index)
-            return posX
+            return table.remove(availablePositions, index)
         end
         return screenLeft + math.random(screenRight - screenLeft)
     end
 
-    -- Criação dos obstáculos superiores com altura fixa
     for i, info in ipairs(upperObstacleInfo) do
         local obstacle = createObstacle(info.name, info.path, info.carbs, screenTop + 450, 2)
         if obstacle then
-            obstacle.x = getRandomPosition() -- Atribui uma posição 'x' exclusiva
+            obstacle.x = getRandomPosition()
             table.insert(upperObstacles, obstacle)
         end
     end
 
-    -- Criação dos obstáculos inferiores com altura fixa
     for i, info in ipairs(lowerObstacleInfo) do
         local obstacle = createObstacle(info.name, info.path, info.carbs, screenBottom - 150, 1.5)
         if obstacle then
-            obstacle.x = getRandomPosition() -- Atribui uma posição 'x' exclusiva
+            obstacle.x = getRandomPosition()
             table.insert(lowerObstacles, obstacle)
         end
     end
 
-
     local function onCollision(event)
         if event.phase == "began" and event.other and event.other.carbs ~= nil then
-            if event.other.carbs > 20 then
+            -- Ajuste para apenas alterar o peso ao colidir com obstáculos específicos
+            if event.other.name == "estresse" or event.other.name == "work_a_lot" or event.other.name == "sedentary_life_style" then
+                character.weight = (character.weight or 66) + 5
+            elseif event.other.carbs > 20 then
                 character.weight = (character.weight or 66) + 5
             else
                 character.weight = (character.weight or 66) - 2
@@ -425,6 +366,8 @@ function startGame()
             updateWeight()
         end
     end
+
+
     character:addEventListener("collision", onCollision)
 
     local function onScreenTouch(event)
@@ -435,5 +378,4 @@ function startGame()
     Runtime:addEventListener("touch", onScreenTouch)
 end
 
--- Cria a tela inicial ao iniciar o jogo
 createStartScreen()
