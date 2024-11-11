@@ -74,7 +74,7 @@ local function createStartScreen()
 
     local rulesText = display.newText({
         text =
-        "Regras:\n- Pule os obstáculos ricos em carboidratos.\n- Colida com alimentos saudáveis para perder peso.\n- Evite ganhar peso acima de 300kg.\n- Evite perder peso abaixo de 52kg.\n- O personagem fica mais lento ao pular conforme ganha peso e mais rápido conforme perde peso.",
+        "Regras:\n- Pule os obstáculos ricos em carboidratos.\n- Colida com alimentos saudáveis para perder peso.\n- Evite ganhar peso acima de 300kg.\n- Evite perder peso abaixo de 45kg.\n- O personagem fica mais lento ao pular conforme ganha peso e mais rápido conforme perde peso.",
         x = display.contentCenterX,
         y = display.contentCenterY - 150,
         width = display.contentWidth - 140,
@@ -139,7 +139,7 @@ function startGame()
     character.y = screenBottom - 150                                     -- Initial position above ground level
     physics.addBody(character, "dynamic", { radius = 30, bounce = 0 })   -- Adiciona o corpo de física
     character.isFixedRotation = true                                     -- Prevent character from rotating
-    character.weight = 60                                                -- Peso inicial
+    character.weight = 60                                                -- Initial weight set to 60 kg
 
     -- Dentro da função de atualização ou pulo do personagem
     -- Inicialize a variável jumpIndex como local
@@ -262,7 +262,7 @@ function startGame()
         weightBar.width = character.weight
         weightText.text = tostring(character.weight) .. " kg"
 
-        if character.weight <= 52 or character.weight >= 300 then
+        if character.weight <= 45 or character.weight >= 300 then
             gameOver()
         else
             if character.weight > 100 then
@@ -357,15 +357,16 @@ function startGame()
         if event.phase == "began" and event.other and event.other.carbs ~= nil then
             -- Ajuste para apenas alterar o peso ao colidir com obstáculos específicos
             if event.other.name == "estresse" or event.other.name == "work_a_lot" or event.other.name == "sedentary_life_style" then
-                character.weight = (character.weight or 60) + 5
+                character.weight = (character.weight or 66) + 5
             elseif event.other.carbs > 20 then
-                character.weight = (character.weight or 60) + 5
+                character.weight = (character.weight or 66) + 5
             else
-                character.weight = (character.weight or 60) - 2
+                character.weight = (character.weight or 66) - 2
             end
             updateWeight()
         end
     end
+
 
     character:addEventListener("collision", onCollision)
 
