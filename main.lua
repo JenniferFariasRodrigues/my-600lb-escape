@@ -191,30 +191,32 @@ function startGame()
 
     Runtime:addEventListener("enterFrame", updatePosition)
 
-    local weightBar = display.newRect(display.contentCenterX, 60, character.weight, 20)
+    local weightBar = display.newRect(character.x, character.y - 80, 80, 10)
     weightBar:setFillColor(0, 1, 0)
 
-    local weightText = display.newText({
-        text = tostring(character.weight) .. " kg",
-        x = display.contentCenterX,
-        y = 60,
-        font = native.systemFontBold,
-        fontSize = 16
-    })
-    weightText:setFillColor(0, 0, 0)
+    local function updateWeightBar()
+        weightBar.x = character.x
+        weightBar.y = character.y - 80
+
+        if character.weight > 100 then
+            weightBar:setFillColor(1, 0, 0)
+        else
+            weightBar:setFillColor(0, 1, 0)
+        end
+    end
+
+    Runtime:addEventListener("enterFrame", updateWeightBar)
 
     local function gameOver()
         physics.pause()
         audio.stop()
         playGameOverMusic()
 
-        pcall(function() Runtime:removeEventListener("enterFrame", updatePosition) end)
-        pcall(function() Runtime:removeEventListener("touch", onScreenTouch) end)
-        pcall(function() character:removeEventListener("collision", onCollision) end)
+        Runtime:removeEventListener("enterFrame", updatePosition)
+        Runtime:removeEventListener("enterFrame", updateWeightBar)
 
         display.remove(character)
         display.remove(weightBar)
-        display.remove(weightText)
 
         local gameOverImage = display.newImageRect("gameOver/gameOver.jpeg", display.contentWidth, display.contentHeight)
         gameOverImage.x = display.contentCenterX
@@ -259,17 +261,8 @@ function startGame()
     end
 
     local function updateWeight()
-        weightBar.width = character.weight
-        weightText.text = tostring(character.weight) .. " kg"
-
         if character.weight <= 52 or character.weight >= 300 then
             gameOver()
-        else
-            if character.weight > 100 then
-                weightBar:setFillColor(1, 0, 0)
-            else
-                weightBar:setFillColor(0, 1, 0)
-            end
         end
     end
 
@@ -303,38 +296,27 @@ function startGame()
     lowerObstacles = {}
 
     local upperObstacleInfo = {
-        { name = "crossfit",         path = "obstacles/crossfit.png",         carbs = 0 },
-        { name = "run",              path = "obstacles/run.png",              carbs = 0 },
+        { name = "crossfit", path = "obstacles/crossfit.png", carbs = 0 },
+        { name = "run", path = "obstacles/run.png", carbs = 0 },
         { name = "barbecue_healthy", path = "obstacles/barbecue_healthy.png", carbs = 0 },
-        { name = "strawberry",       path = "obstacles/strawberry.png",       carbs = 7.7 },
-        { name = "eggplant",         path = "obstacles/eggplant.png",         carbs = 5.9 },
-        { name = "gym",              path = "obstacles/gym.png",              carbs = 0 },
-        { name = "meat",             path = "obstacles/meat.png",             carbs = 0 },
+        { name = "strawberry", path = "obstacles/strawberry.png", carbs = 7.7 },
+        { name = "eggplant", path = "obstacles/eggplant.png", carbs = 5.9 },
+        { name = "gym", path = "obstacles/gym.png", carbs = 0 },
+        { name = "meat", path = "obstacles/meat.png", carbs = 0 }
     }
 
     local lowerObstacleInfo = {
-        { name = "bread",                path = "obstacles/bread.png",                carbs = 49 },
-        { name = "rice",                 path = "obstacles/rice.png",                 carbs = 28 },
-        { name = "noodle",               path = "obstacles/noodle.png",               carbs = 25 },
-        { name = "estresse",             path = "obstacles/estresse.png",             carbs = 0 },
-        { name = "work_a_lot",           path = "obstacles/work_a_lot.png",           carbs = 0 },
-        { name = "ice_cream",            path = "obstacles/ice_cream.png",            carbs = 23 },
-        { name = "sedentary_life_style", path = "obstacles/sedentary_life_style.png", carbs = 0 },
+        { name = "bread", path = "obstacles/bread.png", carbs = 49 },
+        { name = "rice", path = "obstacles/rice.png", carbs = 28 },
+        { name = "noodle", path = "obstacles/noodle.png", carbs = 25 },
+        { name = "estresse", path = "obstacles/estresse.png", carbs = 0 },
+        { name = "work_a_lot", path = "obstacles/work_a_lot.png", carbs = 0 },
+        { name = "ice_cream", path = "obstacles/ice_cream.png", carbs = 23 },
+        { name = "sedentary_life_style", path = "obstacles/sedentary_life_style.png", carbs = 0 }
     }
 
-    local obstacleSpacing = 350
-    local availablePositions = {}
-
-    for i = 1, #upperObstacleInfo + #lowerObstacleInfo do
-        table.insert(availablePositions, screenLeft + (i - 1) * obstacleSpacing + 200)
-    end
-
     local function getRandomPosition()
-        if #availablePositions > 0 then
-            local index = math.random(1, #availablePositions)
-            return table.remove(availablePositions, index)
-        end
-        return screenLeft + math.random(screenRight - screenLeft)
+        return math.random(screenLeft + 30, screenRight - 30)
     end
 
     for i, info in ipairs(upperObstacleInfo) do
@@ -355,7 +337,6 @@ function startGame()
 
     local function onCollision(event)
         if event.phase == "began" and event.other and event.other.carbs ~= nil then
-            -- Ajuste para apenas alterar o peso ao colidir com obstáculos específicos
             if event.other.name == "estresse" or event.other.name == "work_a_lot" or event.other.name == "sedentary_life_style" then
                 character.weight = (character.weight or 60) + 5
             elseif event.other.carbs > 20 then
