@@ -174,8 +174,6 @@ function startGame()
             if currentMonth > 9 then
                 if winnerAchieved then
                     winner()
-                else
-                    gameOver()
                 end
             end
         end
@@ -348,7 +346,7 @@ function startGame()
 end
 
 -- Função de Game Over
-function gameOver()
+local function gameOver()
     physics.pause()
     audio.stop()
     playGameOverMusic()
@@ -397,7 +395,7 @@ function gameOver()
 end
 
 -- Função Winner
-function winner()
+local function winner()
     physics.pause()
     audio.stop()
     playWinnerMusic()
