@@ -358,7 +358,7 @@ function gameOver()
     gameOverImage.x = display.contentCenterX
     gameOverImage.y = display.contentCenterY
 
-    local yesButton = display.newRect(display.contentWidth * 0.15, display.contentHeight * 0.4, 160, 70)
+    local yesButton = display.newRect(display.contentWidth * 0.15, display.contentHeight * 0.75, 160, 70)
     yesButton:setFillColor(0.3, 0.9, 0.3)
     local yesText = display.newText({
         text = "Yes",
@@ -368,7 +368,7 @@ function gameOver()
         fontSize = 28
     })
 
-    local noButton = display.newRect(display.contentWidth * 0.4, display.contentHeight * 0.4, 160, 70)
+    local noButton = display.newRect(display.contentWidth * 0.4, display.contentHeight * 0.75, 160, 70)
     noButton:setFillColor(0.9, 0.3, 0.3)
     local noText = display.newText({
         text = "No",
@@ -397,6 +397,7 @@ function gameOver()
 end
 
 -- Função Winner
+-- Função Winner
 function winner()
     physics.pause()
     audio.stop()
@@ -406,8 +407,18 @@ function winner()
     winnerScreen.x = display.contentCenterX
     winnerScreen.y = display.contentCenterY
 
-    -- Opções de reiniciar ou sair
-    local yesButton = display.newRect(display.contentWidth * 0.15, display.contentHeight * 0.4, 160, 70)
+    -- Texto "Try Again?" posicionado acima dos botões
+    local tryAgainText = display.newText({
+        text = "Try Again?",
+        x = display.contentCenterX,
+        y = display.contentHeight * 0.6, -- Ajustado para aparecer acima dos botões
+        font = native.systemFontBold,
+        fontSize = 32
+    })
+    tryAgainText:setFillColor(0, 0, 0) -- Cor preta para contraste
+
+    -- Opções de reiniciar ou sair, ajustadas para posição mais baixa
+    local yesButton = display.newRect(display.contentWidth * 0.3, display.contentHeight * 0.75, 160, 70) -- Posição ajustada
     yesButton:setFillColor(0.3, 0.9, 0.3)
     local yesText = display.newText({
         text = "Yes",
@@ -417,7 +428,7 @@ function winner()
         fontSize = 28
     })
 
-    local noButton = display.newRect(display.contentWidth * 0.4, display.contentHeight * 0.4, 160, 70)
+    local noButton = display.newRect(display.contentWidth * 0.7, display.contentHeight * 0.75, 160, 70) -- Posição ajustada
     noButton:setFillColor(0.9, 0.3, 0.3)
     local noText = display.newText({
         text = "No",
@@ -429,6 +440,7 @@ function winner()
 
     local function onYesButtonTap()
         display.remove(winnerScreen)
+        display.remove(tryAgainText)
         display.remove(yesButton)
         display.remove(yesText)
         display.remove(noButton)
