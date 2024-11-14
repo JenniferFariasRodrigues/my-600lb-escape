@@ -398,6 +398,7 @@ end
 
 -- Função Winner
 -- Função Winner
+-- Função Winner
 function winner()
     physics.pause()
     audio.stop()
@@ -407,18 +408,18 @@ function winner()
     winnerScreen.x = display.contentCenterX
     winnerScreen.y = display.contentCenterY
 
-    -- Texto "Try Again?" posicionado acima dos botões
+    -- Texto "Try Again?" posicionado mais abaixo
     local tryAgainText = display.newText({
         text = "Try Again?",
         x = display.contentCenterX,
-        y = display.contentHeight * 0.6, -- Ajustado para aparecer acima dos botões
+        y = display.contentHeight * 0.75, -- Ajustado para ficar mais abaixo
         font = native.systemFontBold,
         fontSize = 32
     })
     tryAgainText:setFillColor(0, 0, 0) -- Cor preta para contraste
 
-    -- Opções de reiniciar ou sair, ajustadas para posição mais baixa
-    local yesButton = display.newRect(display.contentWidth * 0.3, display.contentHeight * 0.75, 160, 70) -- Posição ajustada
+    -- Botões "Yes" e "No" mais próximos um do outro
+    local yesButton = display.newRect(display.contentCenterX - 80, display.contentHeight * 0.85, 160, 70) -- Ajustado para a esquerda
     yesButton:setFillColor(0.3, 0.9, 0.3)
     local yesText = display.newText({
         text = "Yes",
@@ -428,7 +429,7 @@ function winner()
         fontSize = 28
     })
 
-    local noButton = display.newRect(display.contentWidth * 0.7, display.contentHeight * 0.75, 160, 70) -- Posição ajustada
+    local noButton = display.newRect(display.contentCenterX + 80, display.contentHeight * 0.85, 160, 70) -- Ajustado para a direita
     noButton:setFillColor(0.9, 0.3, 0.3)
     local noText = display.newText({
         text = "No",
