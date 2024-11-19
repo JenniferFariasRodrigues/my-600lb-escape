@@ -191,6 +191,7 @@ end
 -- Função para criar a tela inicial
 -- Função para criar a tela inicial
 -- Função para criar a tela do tutorial
+-- Função para criar a tela do tutorial
 local function createTutorialScreen()
     -- Remove qualquer grupo anterior
     if startScreenGroup then
@@ -203,7 +204,7 @@ local function createTutorialScreen()
 
     -- Fundo da tela de tutorial
     local tutorialBackground = display.newImageRect(tutorialGroup, "background/background_5.jpg", display.contentWidth,
-    display.contentHeight)
+        display.contentHeight)
     tutorialBackground.x = display.contentCenterX
     tutorialBackground.y = display.contentCenterY
 
@@ -212,7 +213,7 @@ local function createTutorialScreen()
         parent = tutorialGroup,
         text = "Tutorial",
         x = display.contentCenterX,
-        y = display.contentHeight * 0.2,
+        y = display.contentHeight * 0.5, -- Posicionado no topo
         font = native.systemFontBold,
         fontSize = 36
     })
@@ -224,7 +225,7 @@ local function createTutorialScreen()
         text =
         "Regras:\n- Pule os obstáculos ricos em carboidratos.\n- Colida com alimentos saudáveis para perder peso.\n- Evite ganhar peso acima de 300kg.\n- Evite perder peso abaixo de 45kg.\n- O personagem fica mais lento ao pular conforme ganha peso e mais rápido conforme perde peso.",
         x = display.contentCenterX,
-        y = display.contentHeight * 0.5,
+        y = display.contentHeight * 0.3, -- Alinhado para cima
         width = display.contentWidth - 40,
         font = native.systemFont,
         fontSize = 20,
@@ -232,9 +233,9 @@ local function createTutorialScreen()
     })
     tutorialText:setFillColor(0, 0, 0) -- Preto para o texto das regras
 
-    -- Botão "Voltar"
-    local backButton = display.newRect(tutorialGroup, display.contentCenterX, display.contentHeight * 0.8, 200, 60)
-    backButton:setFillColor(0.1, 0.5, 0.8) -- Azul claro
+    -- Botão "Voltar" (mais acima e amarelo)
+    local backButton = display.newRect(tutorialGroup, display.contentCenterX, display.contentHeight * 0.7, 200, 60)
+    backButton:setFillColor(1, 1, 0) -- Amarelo
 
     local backText = display.newText({
         parent = tutorialGroup,
@@ -244,12 +245,12 @@ local function createTutorialScreen()
         font = native.systemFontBold,
         fontSize = 24
     })
-    backText:setFillColor(1, 1, 1) -- Branco para o texto do botão
+    backText:setFillColor(0, 0, 0) -- Preto para contraste
 
     -- Função do botão "Voltar"
     local function onBackButtonTap()
         display.remove(tutorialGroup)
-        createStartScreen()
+        createStartScreen() -- Retorna à tela correta com os botões "Start" e "Tutorial"
     end
     backButton:addEventListener("tap", onBackButtonTap)
 end
@@ -299,7 +300,7 @@ local function createStartScreen()
     startText:setFillColor(1, 1, 1) -- Branco
     startScreenGroup:insert(startText)
 
-    -- Botão "Tutorial"
+    -- Botão "Tutorial" (cor amarela)
     local tutorialButton = display.newRect(display.contentCenterX, display.contentCenterY + 100, 200, 60)
     tutorialButton:setFillColor(1, 1, 0) -- Amarelo
     startScreenGroup:insert(tutorialButton)
@@ -333,6 +334,154 @@ end
 
 -- Inicializa a tela inicial
 createStartScreen()
+
+
+
+-- Função para criar a tela inicial-- Função para criar a tela do tutorial
+local function createTutorialScreen()
+    -- Remove qualquer grupo anterior
+    if startScreenGroup then
+        display.remove(startScreenGroup)
+        startScreenGroup = nil
+    end
+
+    -- Grupo da tela de tutorial
+    local tutorialGroup = display.newGroup()
+
+    -- Fundo da tela de tutorial
+    local tutorialBackground = display.newImageRect(tutorialGroup, "background/background_5.jpg", display.contentWidth,
+        display.contentHeight)
+    tutorialBackground.x = display.contentCenterX
+    tutorialBackground.y = display.contentCenterY
+
+    -- Título da tela de tutorial
+    local tutorialTitle = display.newText({
+        parent = tutorialGroup,
+        text = "Tutorial",
+        x = display.contentCenterX,
+        y = display.contentHeight * 0.1, -- Posicionado no topo
+        font = native.systemFontBold,
+        fontSize = 36
+    })
+    tutorialTitle:setFillColor(0, 0, 0) -- Preto para o título
+
+    -- Texto das regras
+    local tutorialText = display.newText({
+        parent = tutorialGroup,
+        text =
+        "Regras:\n- Pule os obstáculos ricos em carboidratos.\n- Colida com alimentos saudáveis para perder peso.\n- Evite ganhar peso acima de 300kg.\n- Evite perder peso abaixo de 45kg.\n- O personagem fica mais lento ao pular conforme ganha peso e mais rápido conforme perde peso.",
+        x = display.contentCenterX,
+        y = display.contentHeight * 0.3, -- Alinhado para cima
+        width = display.contentWidth - 40,
+        font = native.systemFont,
+        fontSize = 20,
+        align = "center"
+    })
+    tutorialText:setFillColor(0, 0, 0) -- Preto para o texto das regras
+
+    -- Botão "Voltar" ( amarelo)
+    --local backButton = display.newRect(tutorialGroup, display.contentCenterX, display.contentCenterY + 100, 200, 60)
+    local backButton = display.newRect(tutorialGroup, display.contentCenterX, display.contentCenterY, 200, 60)
+    backButton:setFillColor(1, 1, 0) -- Amarelo
+
+    local backText = display.newText({
+        parent = tutorialGroup,
+        text = "Voltar",
+        x = backButton.x,
+        y = backButton.y,
+        font = native.systemFontBold,
+        fontSize = 24
+    })
+    backText:setFillColor(0, 0, 0) -- Preto para contraste
+
+    -- Função do botão "Voltar"
+    local function onBackButtonTap()
+        display.remove(tutorialGroup)
+        createStartScreen() -- Retorna à tela correta com os botões "Start" e "Tutorial"
+    end
+    backButton:addEventListener("tap", onBackButtonTap)
+end
+
+-- Função para criar a tela inicial
+local function createStartScreen()
+    -- Limpa qualquer grupo anterior
+    if startScreenGroup then
+        display.remove(startScreenGroup)
+        startScreenGroup = nil
+    end
+
+    -- Recria o fundo da tela inicial
+    background = display.newImageRect("background/background_5.jpg", display.contentWidth, display.contentHeight)
+    background.x = display.contentCenterX
+    background.y = display.contentCenterY
+
+    -- Grupo da tela inicial
+    startScreenGroup = display.newGroup()
+
+    -- Música inicial
+    playStartMusic()
+
+    -- Título do jogo
+    local titleText = display.newText({
+        text = "My 600-lb Escape",
+        x = display.contentCenterX,
+        y = display.contentCenterY - 300,
+        font = native.systemFontBold,
+        fontSize = 40
+    })
+    titleText:setFillColor(0, 0, 0) -- Preto como no original
+    startScreenGroup:insert(titleText)
+
+    -- Botão "Start"
+    local startButton = display.newRect(display.contentCenterX, display.contentCenterY, 200, 60)
+    startButton:setFillColor(0.1, 0.5, 0.1) -- Verde
+    startScreenGroup:insert(startButton)
+
+    local startText = display.newText({
+        text = "Start",
+        x = startButton.x,
+        y = startButton.y,
+        font = native.systemFontBold,
+        fontSize = 30
+    })
+    startText:setFillColor(1, 1, 1) -- Branco
+    startScreenGroup:insert(startText)
+
+    -- Botão "Tutorial" (cor amarela)
+    local tutorialButton = display.newRect(display.contentCenterX, display.contentCenterY + 100, 200, 60)
+    tutorialButton:setFillColor(1, 1, 0) -- Amarelo
+    startScreenGroup:insert(tutorialButton)
+
+    local tutorialText = display.newText({
+        text = "Tutorial",
+        x = tutorialButton.x,
+        y = tutorialButton.y,
+        font = native.systemFontBold,
+        fontSize = 30
+    })
+    tutorialText:setFillColor(0, 0, 0) -- Preto
+    startScreenGroup:insert(tutorialText)
+
+    -- Função do botão "Start"
+    local function onStartButtonTap()
+        display.remove(startScreenGroup)
+        startScreenGroup = nil
+        startGame()
+    end
+    startButton:addEventListener("tap", onStartButtonTap)
+
+    -- Função do botão "Tutorial"
+    local function onTutorialButtonTap()
+        display.remove(startScreenGroup)
+        startScreenGroup = nil
+        createTutorialScreen() -- Abre a tela do tutorial
+    end
+    tutorialButton:addEventListener("tap", onTutorialButtonTap)
+end
+
+-- Inicializa a tela inicial
+createStartScreen()
+
 
 
 
