@@ -132,111 +132,32 @@ local function createStartScreen()
 end
 
 -- Função de Game Over
-function gameOver()
+local function gameOver()
     physics.pause()
     audio.stop()
     playGameOverMusic()
-    display.remove(character)
 
     local gameOverImage = display.newImageRect("gameOver/gameOver.jpeg", display.contentWidth, display.contentHeight)
     gameOverImage.x = display.contentCenterX
     gameOverImage.y = display.contentCenterY
 
-    local yesButton = display.newRect(display.contentWidth * 0.15, display.contentHeight * 0.4, 160, 70)
-    yesButton:setFillColor(0.3, 0.9, 0.3)
-    local yesText = display.newText({
-        text = "Yes",
-        x = yesButton.x,
-        y = yesButton.y,
-        font = native.systemFontBold,
-        fontSize = 28
-    })
-
-    local noButton = display.newRect(display.contentWidth * 0.4, display.contentHeight * 0.4, 160, 70)
-    noButton:setFillColor(0.9, 0.3, 0.3)
-    local noText = display.newText({
-        text = "No",
-        x = noButton.x,
-        y = noButton.y,
-        font = native.systemFontBold,
-        fontSize = 28
-    })
-
-    local function onYesButtonTap()
-        display.remove(gameOverImage)
-        display.remove(yesButton)
-        display.remove(yesText)
-        display.remove(noButton)
-        display.remove(noText)
-        physics.start()
-        createStartScreen()
-    end
-    yesButton:addEventListener("tap", onYesButtonTap)
-
-    local function onNoButtonTap()
-        print("Jogo encerrado.")
-        native.requestExit()
-    end
-    noButton:addEventListener("tap", onNoButtonTap)
-end
-
-function winner()
-    physics.pause()
-    audio.stop()
-    playWinnerMusic()
-
-    local winnerScreen = display.newImageRect("winner/winner.jpeg", display.contentWidth, display.contentHeight)
-    winnerScreen.x = display.contentCenterX
-    winnerScreen.y = display.contentCenterY
-
-    -- Texto "Try Again?" posicionado mais abaixo
-    local tryAgainText = display.newText({
-        text = "Try Again?",
+    local tryAgainButton = display.newText({
+        text = "Try Again",
         x = display.contentCenterX,
-        y = display.contentHeight * 0.75, -- Ajustado para ficar mais abaixo
+        y = display.contentCenterY + 100,
         font = native.systemFontBold,
-        fontSize = 32
+        fontSize = 40
     })
-    tryAgainText:setFillColor(0, 0, 0) -- Cor preta para contraste
+    tryAgainButton:setFillColor(1, 0, 0)
 
-    -- Botões "Yes" e "No" mais próximos um do outro
-    local yesButton = display.newRect(display.contentCenterX - 80, display.contentHeight * 0.85, 160, 70) -- Ajustado para a esquerda
-    yesButton:setFillColor(0.3, 0.9, 0.3)
-    local yesText = display.newText({
-        text = "Yes",
-        x = yesButton.x,
-        y = yesButton.y,
-        font = native.systemFontBold,
-        fontSize = 28
-    })
-
-    local noButton = display.newRect(display.contentCenterX + 80, display.contentHeight * 0.85, 160, 70) -- Ajustado para a direita
-    noButton:setFillColor(0.9, 0.3, 0.3)
-    local noText = display.newText({
-        text = "No",
-        x = noButton.x,
-        y = noButton.y,
-        font = native.systemFontBold,
-        fontSize = 28
-    })
-
-    local function onYesButtonTap()
-        display.remove(winnerScreen)
-        display.remove(tryAgainText)
-        display.remove(yesButton)
-        display.remove(yesText)
-        display.remove(noButton)
-        display.remove(noText)
+    local function restartGame()
+        display.remove(gameOverImage)
+        display.remove(tryAgainButton)
         physics.start()
         createStartScreen()
     end
-    yesButton:addEventListener("tap", onYesButtonTap)
 
-    local function onNoButtonTap()
-        print("Jogo encerrado.")
-        native.requestExit()
-    end
-    noButton:addEventListener("tap", onNoButtonTap)
+    tryAgainButton:addEventListener("tap", restartGame)
 end
 
 -- Função de início do jogo
@@ -386,7 +307,7 @@ function startGame()
         weightBar.width = character.weight
         weightText.text = tostring(character.weight) .. " kg"
 
-        if character.weight <= 52 or character.weight >= 300 then
+        if character.weight <= 45 or character.weight >= 300 then
             gameOver()
         else
             if character.weight > 100 then
