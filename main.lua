@@ -462,6 +462,37 @@ local function createStartScreen()
     tutorialText:setFillColor(0, 0, 0) -- Preto
     startScreenGroup:insert(tutorialText)
 
+    local exitButton = display.newRect(startScreenGroup, display.contentCenterX, display.contentCenterY + 200, 200, 60)
+    exitButton:setFillColor(1, 0, 0)
+
+    local exitText = display.newText({
+        parent = startScreenGroup,
+        text = "Exit",
+        x = exitButton.x,
+        y = exitButton.y,
+        font = native.systemFontBold,
+        fontSize = 30
+    })
+    exitText:setFillColor(1, 1, 1)
+
+    local function onStartButtonTap()
+        startScreenGroup:removeSelf()
+        startScreenGroup = nil
+        startGame()
+    end
+    startButton:addEventListener("tap", onStartButtonTap)
+
+    local function onTutorialButtonTap()
+        createTutorialScreen()
+    end
+    tutorialButton:addEventListener("tap", onTutorialButtonTap)
+
+    local function onExitButtonTap()
+        print("Jogo encerrado.")
+        native.requestExit()
+    end
+    exitButton:addEventListener("tap", onExitButtonTap)
+
     -- Função do botão "Start"
     local function onStartButtonTap()
         display.remove(startScreenGroup)
