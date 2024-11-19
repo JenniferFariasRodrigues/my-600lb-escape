@@ -192,15 +192,21 @@ function winner()
     -- Texto "Try Again?" posicionado mais abaixo
     local tryAgainText = display.newText({
         text = "Try Again?",
-        x = display.contentCenterX,
-        y = display.contentHeight * 0.75, -- Ajustado para ficar mais abaixo
+        -- = display.contentCenterX,
+        -- y = display.contentHeight * 100, -- Ajustado para ficar mais abaixo
+        -- font = native.systemFontBold,
+        x = display.contentWidth * 0.25,  -- Ajustado para a esquerda
+        y = display.contentHeight * 0.75, -- Mantido centralizado verticalmente
         font = native.systemFontBold,
         fontSize = 32
     })
     tryAgainText:setFillColor(0, 0, 0) -- Cor preta para contraste
 
     -- Botões "Yes" e "No" mais próximos um do outro
-    local yesButton = display.newRect(display.contentCenterX - 80, display.contentHeight * 0.85, 160, 70) -- Ajustado para a esquerda
+    --local yesButton = display.newRect(display.contentCenterX - 150, display.contentHeight * 0.85, 160, 70) -- Ajustado para a esquerda
+    local yesButton = display.newRect(display.contentWidth * 0.15, display.contentHeight * 0.85, 160, 70)
+
+
     yesButton:setFillColor(0.3, 0.9, 0.3)
     local yesText = display.newText({
         text = "Yes",
@@ -210,7 +216,9 @@ function winner()
         fontSize = 28
     })
 
-    local noButton = display.newRect(display.contentCenterX + 80, display.contentHeight * 0.85, 160, 70) -- Ajustado para a direita
+    --local noButton = display.newRect(display.contentCenterX + 50, display.contentHeight * 0.85, 160, 70) -- Ajustado para a direita
+    local noButton = display.newRect(display.contentWidth * 0.35, display.contentHeight * 0.85, 150, 60)
+
     noButton:setFillColor(0.9, 0.3, 0.3)
     local noText = display.newText({
         text = "No",
@@ -219,7 +227,30 @@ function winner()
         font = native.systemFontBold,
         fontSize = 28
     })
+    -- Função para criar partículas de glitter/confete
+    -- Garantir compatibilidade com Lua 5.1 ou LuaJIT
+    local unpack = unpack or table.unpack -- Define `unpack` como `table.unpack` para versões modernas
 
+    -- Função para criar partículas de glitter/confete
+    local function createConfetti()
+        local colors = { { 1, 0, 0 }, { 0, 1, 0 }, { 0, 0, 1 }, { 1, 1, 0 }, { 1, 0, 1 }, { 0, 1, 1 } }
+        local glitter = display.newCircle(math.random(screenLeft, screenRight), -50, math.random(3, 6))
+        glitter:setFillColor(unpack(colors[math.random(#colors)])) -- Aqui usamos `unpack` compatível com a versão
+
+        physics.addBody(glitter, "dynamic", { radius = glitter.path.radius, bounce = 0.3, density = 0.1 })
+        glitter:applyLinearImpulse(math.random(-2, 2) * 0.1, math.random(2, 5) * 0.1, glitter.x, glitter.y)
+
+        -- Remove o glitter após sair da tela
+        local function removeGlitter()
+            display.remove(glitter)
+            glitter = nil
+        end
+        timer.performWithDelay(3000, removeGlitter)
+    end
+
+
+    -- Criar glitter continuamente por um tempo
+    timer.performWithDelay(100, createConfetti, 100)
     local function onYesButtonTap()
         display.remove(winnerScreen)
         display.remove(tryAgainText)
@@ -254,6 +285,8 @@ function startGame()
         "character/imag_1_processed.png",
         "character/imag_2_processed.png",
         "character/imag_3_processed.png",
+        "character/imag_4_processed.png",
+        "character/imag_5_processed.png",
         "character/imag_6_processed.png"
     }
 
