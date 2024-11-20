@@ -94,7 +94,7 @@ local function createStartScreen()
 
     local rulesText = display.newText({
         text =
-        "Regras:\n- Pule os obstáculos ricos em carboidratos.\n- Colida com alimentos saudáveis para perder peso.\n- Evite ganhar peso acima de 300kg.\n- Evite perder peso abaixo de 45kg.\n- O personagem fica mais lento ao pular conforme ganha peso e mais rápido conforme perde peso.",
+        "Regras:\n- Pule os obstáculos ricos em carboidratos;\n- Colida com alimentos com menos carboidratos para perder peso;\n- Evite ganhar peso acima de 300kg;\n- Evite perder peso abaixo de 52kg;\n Ocorrerá Game Over, se após 9 meses(quadrados) o personagem estiver fora da faixa de peso-52 e 72 kg. Caso contrário, ganhará o jogo;\n- O personagem fica mais lento ao pular conforme ganha peso e mais rápido conforme perde peso.",
         x = display.contentCenterX,
         y = display.contentCenterY - 150,
         width = display.contentWidth - 140,
@@ -158,7 +158,9 @@ local function createTutorialScreen()
     local tutorialText = display.newText({
         parent = tutorialGroup,
         text =
-        "Regras:\n- Pule os obstáculos ricos em carboidratos.\n- Colida com alimentos saudáveis para perder peso.\n- Evite ganhar peso acima de 300kg.\n- Evite perder peso abaixo de 45kg.\n- O personagem fica mais lento ao pular conforme ganha peso e mais rápido conforme perde peso.",
+        "Regras:\n- Pule os obstáculos ricos em carboidratos;\n- Colida com alimentos com menos carboidratos para perder peso;\n- Evite ganhar peso acima de 300kg;\n- Evite perder peso abaixo de 52kg;\n Ocorrerá Game Over, se após 9 meses(quadrados) o personagem estiver fora da faixa de peso-52 e 72 kg. Caso contrário, ganhará o jogo;\n- O personagem fica mais lento ao pular conforme ganha peso e mais rápido conforme perde peso.",
+
+        --"Regras:\n- Pule os obstáculos ricos em carboidratos.\n- Colida com alimentos saudáveis para perder peso.\n- Evite ganhar peso acima de 300kg.\n- Evite perder peso abaixo de 45kg.\n- O personagem fica mais lento ao pular conforme ganha peso e mais rápido conforme perde peso.",
         x = display.contentCenterX,
         y = display.contentHeight * 0.5,
         width = display.contentWidth - 40,
@@ -223,7 +225,8 @@ local function createTutorialScreen()
     local tutorialText = display.newText({
         parent = tutorialGroup,
         text =
-        "Regras:\n- Pule os obstáculos ricos em carboidratos.\n- Colida com alimentos saudáveis para perder peso.\n- Evite ganhar peso acima de 300kg.\n- Evite perder peso abaixo de 45kg.\n- O personagem fica mais lento ao pular conforme ganha peso e mais rápido conforme perde peso.",
+        "Regras:\n- Pule os obstáculos ricos em carboidratos;\n- Colida com alimentos com menos carboidratos para perder peso;\n- Evite ganhar peso acima de 300kg;\n- Evite perder peso abaixo de 52kg;\n Ocorrerá Game Over, se após 9 meses(quadrados) o personagem estiver fora da faixa de peso-52 e 72 kg. Caso contrário, ganhará o jogo;\n- O personagem fica mais lento ao pular conforme ganha peso e mais rápido conforme perde peso.",
+
         x = display.contentCenterX,
         y = display.contentHeight * 0.3, -- Alinhado para cima
         width = display.contentWidth - 40,
@@ -369,7 +372,9 @@ local function createTutorialScreen()
     local tutorialText = display.newText({
         parent = tutorialGroup,
         text =
-        "Regras:\n- Pule os obstáculos ricos em carboidratos.\n- Colida com alimentos saudáveis para perder peso.\n- Evite ganhar peso acima de 300kg.\n- Evite perder peso abaixo de 45kg.\n- O personagem fica mais lento ao pular conforme ganha peso e mais rápido conforme perde peso.",
+        "Regras:\n- Pule os obstáculos ricos em carboidratos;\n- Colida com alimentos com menos carboidratos para perder peso;\n- Evite ganhar peso acima de 300kg;\n- Evite perder peso abaixo de 52kg;\n Ocorrerá Game Over, se após 9 meses(quadrados) o personagem estiver fora da faixa de peso-52 e 72 kg. Caso contrário, ganhará o jogo;\n- O personagem fica mais lento ao pular conforme ganha peso e mais rápido conforme perde peso.",
+
+
         x = display.contentCenterX,
         y = display.contentHeight * 0.3, -- Alinhado para cima
         width = display.contentWidth - 40,
