@@ -60,9 +60,7 @@ The game consists of phases where players must avoid high-calorie obstacles and 
 - **Description**: Players must avoid high-calorie obstacles and interact with healthy ones to gain points and lose weight.
 - **Image Preview**:
 
-  <p align="center">
-     <img src="" height="190" width="800"> 
-  </p>
+  
 
 #### Healthy Choices Phase
 
@@ -70,9 +68,7 @@ The game consists of phases where players must avoid high-calorie obstacles and 
 - **Description**: Navigate through various foods with different calorie values to maintain or reduce weight.
 - **Image Preview**:
 
-  <p align="center">
-     <img src="" height="190" width="800"> 
-  </p>
+ 
 
 #### Challenge Phase
 
@@ -80,9 +76,7 @@ The game consists of phases where players must avoid high-calorie obstacles and 
 - **Description**: With increased difficulty, this phase introduces a variety of moving obstacles to dodge.
 - **Image Preview**:
 
-  <p align="center">
-     <img src="" height="190" width="800"> 
-  </p>
+ 
 
 ## Project Output
 
@@ -95,7 +89,7 @@ The game consists of phases where players must avoid high-calorie obstacles and 
 The game interface provides interactive levels as described above.
 
 <p align="center">
- <img src="pics/img_1.png?raw=true" height="350" width="150"> 
+ <img src="pics/pic_game.jpeg?raw=true" height="350" width="150"> 
 </p>
 
 ## Contribution
