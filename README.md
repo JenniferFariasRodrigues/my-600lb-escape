@@ -155,6 +155,7 @@ Allows users to search for game-related content dynamically.
 Search results are displayed directly in the React app.
 
 ```
+## SnapShot Application Preview-final video
 
 <p align="center">
    <video controls width="650" height="350">
