@@ -137,8 +137,10 @@ Provides details about the game phases.
 Features video previews of game stages for better visualization.
 
 Galeria VIP
+
 Provides personal details about the developer's Instagram account.
 Videos are stored in public/media/videos.
+
 Contato Section
 
 Lists developer contact information, including:
@@ -151,10 +153,9 @@ Search Feature
 
 Allows users to search for game-related content dynamically.
 Search results are displayed directly in the React app.
-## SnapShot Application Preview
-
 
 ```
+## SnapShot Application Preview
 <p align="center">
    <video controls width="650" height="350">
       <source src="Videos_pics/final_video.mp4" type="video/mp4">
