@@ -103,10 +103,6 @@ $ git clone https://github.com/JenniferFariasRodrigues/my-600lb-escape.git
 # Access the project in Eclipse IDE
 On the IDE, choose the option "Import projects". Under "General," select "Existing Projects into Workspace" and choose the "my-600lb-escape" folder.
 
-# Run the project
-Select the "my-600lb-escape" project in the IDE.
-Click on "Run" in the Window.
-Run the Project
 
 SnapShot (React Project)
 The SnapShot project is a React-based frontend application that complements the My 600lb Escape game by offering additional features:
@@ -119,17 +115,16 @@ How to Run SnapShot
 Navigate to the SnapShot directory:
 
 bash
-Copiar código
 cd SnapShot
 Install the dependencies:
 
 bash
-Copiar código
+
 npm install
 Start the development server:
 
 bash
-Copiar código
+
 npm start
 Open your browser and go to http://localhost:3000 to view the application.
 
