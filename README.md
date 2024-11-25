@@ -89,7 +89,7 @@ The game consists of phases where players must avoid high-calorie obstacles and 
 The game interface provides interactive levels as described above.
 
 <p align="center">
- <img src="pics/pic_game.jpeg?raw=true" height="350" width="150"> 
+ <img src="pics/pic_game.jpeg?raw=true" height="350" width="250"> 
 </p>
 
 ## Contribution
