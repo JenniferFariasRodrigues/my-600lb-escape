@@ -14,11 +14,16 @@
 
 ---
 
-## Technologies Used
+## **Technologies Used**
 
 - **Lua**: Main programming language for game logic.
 - **Solar2D (Corona SDK)**: Platform for developing and rendering the game.
 - **JavaScript**: For managing game description and interaction in the user interface.
+- **React**: Frontend framework for the user interface.
+- **CSS**: Styling for the game UI.
+- **HTML**: Structuring the web-based components.
+
+---
 
 ### Getting Started
 
