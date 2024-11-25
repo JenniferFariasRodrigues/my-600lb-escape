@@ -92,6 +92,98 @@ The game interface provides interactive levels as described above.
  <img src="pics/pic_game.jpeg?raw=true" height="350" width="250"> 
 </p>
 
+---
+
+### **Getting Started-Web page**
+
+```bash
+# Clone this project
+$ git clone https://github.com/JenniferFariasRodrigues/my-600lb-escape.git
+
+# Access the project in Eclipse IDE
+On the IDE, choose the option "Import projects". Under "General," select "Existing Projects into Workspace" and choose the "my-600lb-escape" folder.
+
+# Run the project
+Select the "my-600lb-escape" project in the IDE.
+Click on "Run" in the Window.
+Run the Project
+Open Solar2D.
+Select Open Project and choose the folder my-600lb-escape.
+Finally, click Run to start the game.
+Game Flow
+The game consists of phases where players must avoid high-calorie obstacles and aim for those that promote weight loss.
+
+Game Phases
+Initial Phase
+Objective: Learn the basic game controls.
+Description: Players must avoid high-calorie obstacles and interact with healthy ones to gain points and lose weight.
+Healthy Choices Phase
+Objective: Select low-calorie options while avoiding high-calorie foods to progress.
+Description: Navigate through various foods with different calorie values to maintain or reduce weight.
+Challenge Phase
+Objective: Avoid as many unhealthy obstacles as possible to maximize points.
+Description: With increased difficulty, this phase introduces a variety of moving obstacles to dodge.
+Project Output
+Play now: Game Link
+
+<p align="center"> <img src="pics/pic_game.jpeg?raw=true" height="350" width="150"> </p>
+SnapShot (React Project)
+The SnapShot project is a React-based frontend application that complements the My 600lb Escape game by offering additional features:
+
+Motivation Section: Displays images of progress ("Before" and "After") to inspire users.
+Game Overview: Provides an overview of game phases and video previews.
+Interactive Search: Enables users to search for more information directly from the app.
+How to Run SnapShot
+Navigate to the SnapShot directory:
+
+bash
+Copiar código
+cd SnapShot
+Install the dependencies:
+
+bash
+Copiar código
+npm install
+Start the development server:
+
+bash
+Copiar código
+npm start
+Open your browser and go to http://localhost:3000 to view the application.
+
+Key Features
+Motivation Section
+
+Displays "Before" and "After" images using responsive layouts.
+Images are grouped dynamically with CSS styling for clean presentation.
+Images are stored in public/media/images.
+About the Game
+
+Provides details about the game phases.
+Features video previews of game stages for better visualization.
+Videos are stored in public/media/videos.
+Contact Section
+
+Lists developer contact information, including:
+Email
+LinkedIn
+GitHub
+Stack Overflow
+Interactive links open in new tabs for convenience.
+Search Feature
+
+Allows users to search for game-related content dynamically.
+Search results are displayed directly in the React app.
+## SnapShot Application Preview
+
+<p align="center">
+   <video controls width="650" height="350">
+      <source src="Videos_pics/final_video.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+   </video>
+</p>
+```
+
 ## Contribution
 
 Feel free to contribute to this project by submitting pull requests. Please ensure your changes are well-tested and documented.
