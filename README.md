@@ -1,6 +1,7 @@
 <p align="center">
  <img src="https://hermes.dio.me/articles/cover/9449651b-e61d-4e4a-8460-4a5063e77afb.jpg" height="250" width="350">  
  <img src="https://www.infoworld.com/wp-content/uploads/2024/06/shutterstock_1361674454-100939444-orig.jpg?resize=1536%2C1025&quality=50&strip=all" height="250" width="350 </p>
+ <img src=" https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freecodecamp.org%2Fportuguese%2Fnews%2Freact-js-para-iniciantes-props-e-state-explicados%2F&psig=AOvVaw3BDLVLr5r_e3RbYUcNtqbV&ust=1732664514855000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLCKg8PU-IkDFQAAAAAdAAAAABAE" height="250" width="350 </p>
   <h1 align="center"></h1>
  <h1 align="center"> My 600lb escape</h1>
 <p align="center">
@@ -25,7 +26,7 @@
 
 ---
 
-### Getting Started
+### Getting Started-game
 
 ```bash
 # Clone this project
@@ -78,7 +79,7 @@ The game consists of phases where players must avoid high-calorie obstacles and 
 
  
 
-## Project Output
+## Project Game Output
 
 ### Link to Download Game
 
@@ -102,6 +103,16 @@ $ git clone https://github.com/JenniferFariasRodrigues/my-600lb-escape.git
 
 # Access the project in Eclipse IDE
 On the IDE, choose the option "Import projects". Under "General," select "Existing Projects into Workspace" and choose the "my-600lb-escape" folder.
+How to Run SnapShot
+Navigate to the SnapShot directory:
+
+cd SnapShot
+Install the dependencies:
+npm install
+
+Start the development server:
+npm start
+Open your browser and go to http://localhost:3000 to view the application.
 
 
 SnapShot (React Project)
@@ -111,22 +122,6 @@ Motivação : Displays images of progress ("Before" and "After") to inspire user
 Sobre o jogo: Provides an overview of game phases and video previews.
 Galeria VIP: Enables users to search for more information directly from the app.
 Contatos: personal data and links about developer.
-How to Run SnapShot
-Navigate to the SnapShot directory:
-
-bash
-cd SnapShot
-Install the dependencies:
-
-bash
-
-npm install
-Start the development server:
-
-bash
-
-npm start
-Open your browser and go to http://localhost:3000 to view the application.
 
 Key Features
 Motivação Section
