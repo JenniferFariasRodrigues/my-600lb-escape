@@ -1,6 +1,6 @@
 <p align="center">
  <img src="https://hermes.dio.me/articles/cover/9449651b-e61d-4e4a-8460-4a5063e77afb.jpg" height="250" width="350">  
- <img src="https://www.infoworld.com/wp-content/uploads/2024/06/shutterstock_1361674454-100939444-orig.jpg?resize=1536%2C1025&quality=50&strip=all" height="250" width="350 
+ <img src="https://www.infoworld.com/wp-content/uploads/2024/06/shutterstock_1361674454-100939444-orig.jpg?resize=1536%2C1025&quality=50&strip=all" height="250" width="350 >
  <img src="https://www.freecodecamp.org/portuguese/news/content/images/size/w2000/2023/03/Ekran-Resmi-2019-11-18-18.08.13.png" height="250" width="350</p>
   <h1 align="center"></h1>
  <h1 align="center"> My 600lb escape</h1>
