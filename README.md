@@ -62,7 +62,7 @@ The game consists of phases where players must avoid high-calorie obstacles and 
 - **Description**: Players must avoid high-calorie obstacles and interact with healthy ones to gain points and lose weight.
 - **Image Preview**:
   <p align="center"> 
-  <img src="public/media/images/game/phase_I.jpeg" height="250" width="300"> 
+  <img src="pics/phase_I.jpeg" height="250" width="300"> 
 </p>
   
 
@@ -72,7 +72,7 @@ The game consists of phases where players must avoid high-calorie obstacles and 
 - **Description**: Navigate through various foods with different calorie values to maintain or reduce weight.
 - **Image Preview**:
 <p align="center"> 
-  <img src="public/media/images/game/phase_II.jpeg" height="250" width="300"> 
+  <img src="pics/phase_II.jpeg" height="250" width="300"> 
 </p>
  
 
@@ -81,7 +81,7 @@ The game consists of phases where players must avoid high-calorie obstacles and 
 - **Objective**: Avoid losing by keeping within a healthy calorie range.
 - **Image Preview**:
 <p align="center"> 
-  <img src="public/media/images/game/game_over.jpeg" height="250" width="350"> 
+  <img src="pics/game_over.jpeg" height="250" width="350"> 
 </p>
 
 #### Winner Phase
@@ -89,7 +89,7 @@ The game consists of phases where players must avoid high-calorie obstacles and 
 - **Objective**: Celebrate your success after completing the healthy lifestyle challenges.
 - **Image Preview**:
 <p align="center"> 
-  <img src="public/media/images/game/winner.jpeg" height="250" width="350"> 
+  <img src="pics/winner.jpeg" height="250" width="350"> 
 </p>
 
  ---
