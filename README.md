@@ -72,7 +72,7 @@ The game consists of phases where players must avoid high-calorie obstacles and 
 - **Description**: Navigate through various foods with different calorie values to maintain or reduce weight.
 - **Image Preview**:
 <p align="center"> 
-  <img src="pics/phase_II.jpeg" height="250" width="200"> 
+  <img src="pics/phase_III.jpeg" height="250" width="200"> 
 </p>
  
 
