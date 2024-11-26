@@ -94,14 +94,7 @@ The game consists of phases where players must avoid high-calorie obstacles and 
 
  ---
 
-### Video Demonstration
 
-<p align="center">
-   <video controls width="650" height="350">
-      <source src="public/media/videos/final_video.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-   </video>
-</p>
 
 ---
 
