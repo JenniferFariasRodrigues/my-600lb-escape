@@ -1,7 +1,8 @@
-
- <img src="https://hermes.dio.me/articles/cover/9449651b-e61d-4e4a-8460-4a5063e77afb.jpg" height="150" width="350">  
- <img src="https://www.infoworld.com/wp-content/uploads/2024/06/shutterstock_1361674454-100939444-orig.jpg?resize=1536%2C1025&quality=50&strip=all" height="150" width="350"> 
- <img src="https://miro.medium.com/v2/resize:fit:1400/1*vHHBwcUFUaHWXntSnqKdCA.png" height="150" width="350">
+<p align="center">
+ <img src="https://hermes.dio.me/articles/cover/9449651b-e61d-4e4a-8460-4a5063e77afb.jpg" height="250" width="250">  
+ <img src="https://www.infoworld.com/wp-content/uploads/2024/06/shutterstock_1361674454-100939444-orig.jpg?resize=1536%2C1025&quality=50&strip=all" height="250" width="250"> 
+ <img src="https://miro.medium.com/v2/resize:fit:1400/1*vHHBwcUFUaHWXntSnqKdCA.png" height="250" width="250">
+</p>
 
   <h1 align="center"></h1>
  <h1 align="center"> My 600-lb escape</h1>
