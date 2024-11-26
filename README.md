@@ -1,6 +1,6 @@
-<p align="justify">
+<p align="center">
  <img src="https://hermes.dio.me/articles/cover/9449651b-e61d-4e4a-8460-4a5063e77afb.jpg" height="250" width="350">  
- <img src="https://www.infoworld.com/wp-content/uploads/2024/06/shutterstock_1361674454-100939444-orig.jpg?resize=1536%2C1025&quality=50&strip=all" height="250" width="350">
+ <img src="https://www.infoworld.com/wp-content/uploads/2024/06/shutterstock_1361674454-100939444-orig.jpg?resize=1536%2C1025&quality=50&strip=all" height="250" width="350"> 
  <img src="https://miro.medium.com/v2/resize:fit:1400/1*vHHBwcUFUaHWXntSnqKdCA.png" height="250" width="350">
 </p>
   <h1 align="center"></h1>
@@ -61,7 +61,7 @@ The game consists of phases where players must avoid high-calorie obstacles and 
 - **Objective**: Learn the basic game controls.
 - **Description**: Players must avoid high-calorie obstacles and interact with healthy ones to gain points and lose weight.
 - **Image Preview**:
-  <p align="center"> <img src="public/media/images/game/phase_I.jpeg" height="250" width="350"> </p>
+  <p align="center"> <img src="pics/phase_I.jpeg" height="250" width="350"> </p>
   
 
 #### Healthy Choices Phase
@@ -69,7 +69,7 @@ The game consists of phases where players must avoid high-calorie obstacles and 
 - **Objective**: Select low-calorie options while avoiding high-calorie foods to progress.
 - **Description**: Navigate through various foods with different calorie values to maintain or reduce weight.
 - **Image Preview**:
-<p align="center"> <img src="public/media/images/game/phase_II.jpeg" height="250" width="350"> </p>
+<p align="center"> <img src="pics/phase_II.jpeg" height="250" width="350"> </p>
  
 
 #### Challenge Phase
@@ -77,7 +77,7 @@ The game consists of phases where players must avoid high-calorie obstacles and 
 - **Objective**: Avoid as many unhealthy obstacles as possible to maximize points.
 - **Description**: With increased difficulty, this phase introduces a variety of moving obstacles to dodge.
 - **Image Preview**:
- <p align="center"> <img src="public/media/images/game/phase_V.jpeg" height="250" width="350"> </p>
+ <p align="center"> <img src="pics/phase_V.jpeg" height="250" width="350"> </p>
 
  
 
