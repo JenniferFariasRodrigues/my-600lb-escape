@@ -4,7 +4,7 @@
  <img src="https://miro.medium.com/v2/resize:fit:1400/1*vHHBwcUFUaHWXntSnqKdCA.png" height="250" width="350">
 </p>
   <h1 align="center"></h1>
- <h1 align="center"> My 600lb escape</h1>
+ <h1 align="center"> My 600-lb escape</h1>
 <p align="center">
 <p align="center">A game about navigating obstacles to achieve a healthy lifestyle, developed with Lua and Solar2D.</p>
 
