@@ -1,4 +1,4 @@
-<p align="center">
+<p align="justify">
  <img src="https://hermes.dio.me/articles/cover/9449651b-e61d-4e4a-8460-4a5063e77afb.jpg" height="250" width="350">  
  <img src="https://www.infoworld.com/wp-content/uploads/2024/06/shutterstock_1361674454-100939444-orig.jpg?resize=1536%2C1025&quality=50&strip=all" height="250" width="350">
  <img src="https://miro.medium.com/v2/resize:fit:1400/1*vHHBwcUFUaHWXntSnqKdCA.png" height="250" width="350">
@@ -61,7 +61,7 @@ The game consists of phases where players must avoid high-calorie obstacles and 
 - **Objective**: Learn the basic game controls.
 - **Description**: Players must avoid high-calorie obstacles and interact with healthy ones to gain points and lose weight.
 - **Image Preview**:
-
+  <p align="center"> <img src="public/media/images/game/phase_I.jpeg" height="250" width="350"> </p>
   
 
 #### Healthy Choices Phase
@@ -69,7 +69,7 @@ The game consists of phases where players must avoid high-calorie obstacles and 
 - **Objective**: Select low-calorie options while avoiding high-calorie foods to progress.
 - **Description**: Navigate through various foods with different calorie values to maintain or reduce weight.
 - **Image Preview**:
-
+<p align="center"> <img src="public/media/images/game/phase_II.jpeg" height="250" width="350"> </p>
  
 
 #### Challenge Phase
@@ -77,6 +77,7 @@ The game consists of phases where players must avoid high-calorie obstacles and 
 - **Objective**: Avoid as many unhealthy obstacles as possible to maximize points.
 - **Description**: With increased difficulty, this phase introduces a variety of moving obstacles to dodge.
 - **Image Preview**:
+ <p align="center"> <img src="public/media/images/game/phase_V.jpeg" height="250" width="350"> </p>
 
  
 
@@ -101,18 +102,16 @@ The game interface provides interactive levels as described above.
 ```bash
 # Clone this project
 $ git clone https://github.com/JenniferFariasRodrigues/my-600lb-escape.git
-
-# Access the project in Eclipse IDE
-On the IDE, choose the option "Import projects". Under "General," select "Existing Projects into Workspace" and choose the "my-600lb-escape" folder.
 How to Run SnapShot
 Navigate to the SnapShot directory:
+# Access the Snapshot folder
+$ cd SnapShot
 
-cd SnapShot
 Install the dependencies:
-npm install
+$  npm install
 
 Start the development server:
-npm start
+$ npm start
 Open your browser and go to http://localhost:3000 to view the application.
 
 
@@ -163,6 +162,8 @@ Search results are displayed directly in the React app.
       Your browser does not support the video tag.
    </video>
 </p>
+
+<p align="center"> <video controls width="650" height="350"> <source src="https://example.com/final_video.mp4" type="video/mp4"> Seu navegador não suporta a tag de vídeo. </video> </p>
 
 ## Contribution
 
