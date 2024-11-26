@@ -93,9 +93,6 @@ The game consists of phases where players must avoid high-calorie obstacles and 
   <img src="pics/phase_V.jpeg" height="250" width="200"> 
 </p>
 
- ---
-
-
 
 ---
 
