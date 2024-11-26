@@ -181,7 +181,7 @@ Search results are displayed directly in the React app.
 ## SnapShot Application Preview-web page
 
 <p align="center">
- <img src="pics/web_page.jpeg?raw=true" height="350" width="450"> 
+ <img src="pics/web_page.jpeg?raw=true" height="350" width="550"> 
 </p>
 
 ## Contribution
