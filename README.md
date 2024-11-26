@@ -61,7 +61,9 @@ The game consists of phases where players must avoid high-calorie obstacles and 
 - **Objective**: Learn the basic game controls.
 - **Description**: Players must avoid high-calorie obstacles and interact with healthy ones to gain points and lose weight.
 - **Image Preview**:
-  <p align="center"> <img src="pics/phase_I.jpeg" height="250" width="350"> </p>
+  <p align="center"> 
+  <img src="public/media/images/game/phase_I.jpeg" height="250" width="300"> 
+</p>
   
 
 #### Healthy Choices Phase
@@ -69,17 +71,39 @@ The game consists of phases where players must avoid high-calorie obstacles and 
 - **Objective**: Select low-calorie options while avoiding high-calorie foods to progress.
 - **Description**: Navigate through various foods with different calorie values to maintain or reduce weight.
 - **Image Preview**:
-<p align="center"> <img src="pics/phase_II.jpeg" height="250" width="350"> </p>
+<p align="center"> 
+  <img src="public/media/images/game/phase_II.jpeg" height="250" width="300"> 
+</p>
  
 
-#### Challenge Phase
+#### Game Over
 
-- **Objective**: Avoid as many unhealthy obstacles as possible to maximize points.
-- **Description**: With increased difficulty, this phase introduces a variety of moving obstacles to dodge.
+- **Objective**: Avoid losing by keeping within a healthy calorie range.
 - **Image Preview**:
- <p align="center"> <img src="pics/phase_V.jpeg" height="250" width="350"> </p>
+<p align="center"> 
+  <img src="public/media/images/game/game_over.jpeg" height="250" width="350"> 
+</p>
 
- 
+#### Winner Phase
+
+- **Objective**: Celebrate your success after completing the healthy lifestyle challenges.
+- **Image Preview**:
+<p align="center"> 
+  <img src="public/media/images/game/winner.jpeg" height="250" width="350"> 
+</p>
+
+ ---
+
+### Video Demonstration
+
+<p align="center">
+   <video controls width="650" height="350">
+      <source src="public/media/videos/final_video.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+   </video>
+</p>
+
+---
 
 ## Project Game Output
 
