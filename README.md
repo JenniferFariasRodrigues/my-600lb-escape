@@ -178,16 +178,11 @@ Allows users to search for game-related content dynamically.
 Search results are displayed directly in the React app.
 
 ```
-## SnapShot Application Preview-final video
+## SnapShot Application Preview-web page
 
 <p align="center">
-   <video controls width="650" height="350">
-      <source src="Videos_pics/final_video.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-   </video>
+ <img src="pics/web_page.jpeg?raw=true" height="350" width="250"> 
 </p>
-
-<p align="center"> <video controls width="650" height="350"> <source src="https://example.com/final_video.mp4" type="video/mp4"> Seu navegador não suporta a tag de vídeo. </video> </p>
 
 ## Contribution
 
