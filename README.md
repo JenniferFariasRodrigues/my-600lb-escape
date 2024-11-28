@@ -84,12 +84,11 @@ The game consists of phases where players must avoid high-calorie obstacles and 
 <p align="center"> 
   <img src="pics/phase_IV.jpeg" height="250" width="200"> 
 </p>
-- **Video Preview**:
+- **Video Preview**:  
 <p align="center">
-  <video controls width="300">
-    <source src="https://github.com/JenniferFariasRodrigues/my-600lb-escape/blob/main/Videos_pics/game_over_black_adjusted.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+  <a href="https://youtu.be/DLjlBbSy-eI" target="_blank">
+    <img src="https://img.youtube.com/vi/DLjlBbSy-eI/0.jpg" alt="Game Over Video" width="300">
+  </a>
 </p>
 #### Winner Phase
 
@@ -99,12 +98,11 @@ The game consists of phases where players must avoid high-calorie obstacles and 
   <img src="pics/phase_V.jpeg" height="250" width="200"> 
 </p>
 
-- **Video Preview**:
+- **Video Preview**:  
 <p align="center">
-  <video controls width="300">
-    <source src="https://github.com/JenniferFariasRodrigues/my-600lb-escape/blob/main/Videos_pics/Winner_black_adjusted.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+  <a href="https://youtu.be/0xoiGEGJSro" target="_blank">
+    <img src="https://img.youtube.com/vi/0xoiGEGJSro/0.jpg" alt="Winner Phase Video" width="300">
+  </a>
 </p>
 
 ---
