@@ -84,7 +84,13 @@ The game consists of phases where players must avoid high-calorie obstacles and 
 <p align="center"> 
   <img src="pics/phase_IV.jpeg" height="250" width="200"> 
 </p>
-
+- **Video Preview**:
+<p align="center">
+  <video controls width="300">
+    <source src="https://github.com/JenniferFariasRodrigues/my-600lb-escape/blob/main/Videos_pics/game_over_black_adjusted.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</p>
 #### Winner Phase
 
 - **Objective**: Celebrate your success after completing the healthy lifestyle challenges.
@@ -93,6 +99,13 @@ The game consists of phases where players must avoid high-calorie obstacles and 
   <img src="pics/phase_V.jpeg" height="250" width="200"> 
 </p>
 
+- **Video Preview**:
+<p align="center">
+  <video controls width="300">
+    <source src="https://github.com/JenniferFariasRodrigues/my-600lb-escape/blob/main/Videos_pics/Winner_black_adjusted.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</p>
 
 ---
 
