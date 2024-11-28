@@ -112,9 +112,6 @@ The game interface provides interactive levels as described above.
 
 ---
 
-
----
-
 ## Web Page
 
 Explore the companion web page for **My 600-lb Escape**, which includes exclusive features like:
