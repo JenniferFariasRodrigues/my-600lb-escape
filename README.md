@@ -133,7 +133,6 @@ The web page is built using **React**, **JavaScript**, and **CSS**, ensuring a s
 
 [Click here to visit the Web Page](https://github.com/JenniferFariasRodrigues/my-600lb-escape-web-page)
 
----
 
 <p align="center">
  <img src="pics/web_page_preview.jpeg" height="300" width="550" alt="Web Page Preview">
