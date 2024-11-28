@@ -147,3 +147,8 @@ The web page is built using **React**, **JavaScript**, and **CSS**, ensuring a s
 Feel free to contribute to this project by submitting pull requests. Please ensure your changes are well-tested and documented.
 
 ---
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
