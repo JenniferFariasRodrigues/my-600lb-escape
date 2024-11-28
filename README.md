@@ -141,3 +141,9 @@ The web page is built using **React**, **JavaScript**, and **CSS**, ensuring a s
 **Note**: The web page complements the game, providing an enhanced experience for players to explore more about **My 600-lb Escape**.
 
 ---
+
+## Contribution
+
+Feel free to contribute to this project by submitting pull requests. Please ensure your changes are well-tested and documented.
+
+---
