@@ -112,73 +112,36 @@ The game interface provides interactive levels as described above.
 
 ---
 
-### **Getting Started-Web page**
 
-```bash
-# Clone this project
-$ git clone https://github.com/JenniferFariasRodrigues/my-600lb-escape.git
-How to Run SnapShot
-Navigate to the SnapShot directory:
-# Access the Snapshot folder
-$ cd SnapShot
+---
 
-Install the dependencies:
-$  npm install
+## Web Page
 
-Start the development server:
-$ npm start
-Open your browser and go to http://localhost:3000 to view the application.
+Explore the companion web page for **My 600-lb Escape**, which includes exclusive features like:
 
-
-SnapShot (React Project)
-The SnapShot project is a React-based frontend application that complements the My 600lb Escape game by offering additional features:
-
-Motivação : Displays images of progress ("Before" and "After") to inspire users.
-Sobre o jogo: Provides an overview of game phases and video previews.
-Galeria VIP: Enables users to search for more information directly from the app.
-Contatos: personal data and links about developer.
-
-Key Features
-Motivação Section
-
-Displays "Before" and "After" images using responsive layouts.
-Images are grouped dynamically with CSS styling for clean presentation.
-Images are stored in public/media/images.
-
-Sobre o jogo
-
-Provides details about the game phases.
-Features video previews of game stages for better visualization.
-
-Galeria VIP
-
-Provides personal details about the developer's Instagram account.
-Videos are stored in public/media/videos.
-
-Contato Section
-
-Lists developer contact information, including:
-Email
-LinkedIn
-GitHub
-Stack Overflow
-Instagram
-Search Feature
-
-Allows users to search for game-related content dynamically.
-Search results are displayed directly in the React app.
-
-```
-## SnapShot Application Preview-web page
+- Progress tracking through **"Before" and "After"** images.
+- Game phase previews with videos.
+- A **VIP Gallery** with personal insights and resources.
+- Search functionality for additional content.
 
 <p align="center">
- <img src="pics/web_page.jpeg?raw=true" height="300" width="550"> 
+ <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" height="100" width="100" alt="React Logo">
+ <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" height="100" width="100" alt="JavaScript Logo">
+ <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" height="100" width="100" alt="CSS Logo">
 </p>
 
-## Contribution
+The web page is built using **React**, **JavaScript**, and **CSS**, ensuring a seamless and interactive experience.
 
-Feel free to contribute to this project by submitting pull requests. Please ensure your changes are well-tested and documented.
+### Web Page Link
 
-## License
+[Click here to visit the Web Page](https://github.com/JenniferFariasRodrigues/my-600lb-escape-web-page)
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+---
+
+<p align="center">
+ <img src="pics/web_page_preview.jpeg" height="300" width="550" alt="Web Page Preview">
+</p>
+
+**Note**: The web page complements the game, providing an enhanced experience for players to explore more about **My 600-lb Escape**.
+
+---
